@@ -5,6 +5,7 @@ const config = {
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
+    "./atoms/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
@@ -18,6 +19,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        montserrat: "var(--var-montserrat)",
+        cantarell: "var(--var-cantarell)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -31,6 +36,10 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      colors: {
+        dark: "#0d1326",
+        light: "#f9f9f9",
       },
     },
   },

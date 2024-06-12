@@ -1,7 +1,11 @@
-export default function Home() {
+import ImageCarousel from "@/components/mainpage/ImageCarousel";
+
+const HomePage = async () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Urban Lux</h1>
+    <main className="flex min-h-screen flex-col items-center">
+      <ImageCarousel />
     </main>
   );
-}
+};
+
+export default HomePage;

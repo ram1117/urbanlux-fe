@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
-
+import { montserrat, cantarell } from "@/atoms/fonts";
+import Navbar from "@/components/navbar/Navbar";
 export const metadata: Metadata = {
   title: "UrbanLux",
   description: "Go to website for buying Urban fashionwares",
@@ -15,8 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${montserrat.variable} ${cantarell.className}`}>
+      <body className="font-montserrat">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

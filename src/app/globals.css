@@ -1,4 +1,15 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
+@tailwind components;
+@tailwind utilities;
+
+.radio-color:not(:checked):not(:disabled) {
+  appearance: none;
+  background-color: transparent;
+  height: 1rem;
+  width: 1rem;
+}
+
+.radio-color:checked {
+  height: 1.3rem;
+  width: 1.3rem;
+}
