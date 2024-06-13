@@ -9,9 +9,9 @@ interface MainImageItemProps {
 const MainImageItem = ({ src }: MainImageItemProps) => {
   return (
     <motion.div
-      className="w-full h-full z-[950]"
-      initial={{ x: -100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
+      className="w-full h-full z-20"
+      initial={{ opacity: 0.8 }}
+      animate={{ opacity: 1 }}
     >
       <ImageWrapper
         src={src}

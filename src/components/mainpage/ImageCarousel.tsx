@@ -18,14 +18,14 @@ const ImageCarousel = () => {
   }, []);
 
   return (
-    <div className="h-screen w-full relative bg-dark">
+    <div className="h-screen w-full -z-50 absolute bg-dark">
       {
         <MainImageItem
           src={images[currentIndex]}
           key={currentIndex}
         ></MainImageItem>
       }
-      <ul className="flex gap-4 items-center justify-center absolute inset-x-0 bottom-4">
+      {/* <ul className="flex gap-4 items-center justify-center absolute inset-x-0 bottom-4">
         <li key={1}>
           <input
             type="radio"
@@ -62,7 +62,7 @@ const ImageCarousel = () => {
             }}
           ></input>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 };

@@ -6,7 +6,7 @@ const Navbar = () => {
       <Link href="/">
         <div className="flex uppercase text-sm lg:text-lg font-cantarell">
           <h2 className="border p-1 text-dark bg-light">Urban</h2>
-          <h2 className="border-r border-y p-1 text-light">Luxury</h2>
+          <h2 className="border-r border-y p-1 text-light">Trend</h2>
         </div>
       </Link>
     </nav>

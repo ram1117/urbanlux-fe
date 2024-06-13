@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${cantarell.className}`}>
+    <html lang="en" className={`${montserrat.variable} ${cantarell.variable}`}>
       <body className="font-montserrat">
         <Navbar />
         {children}
