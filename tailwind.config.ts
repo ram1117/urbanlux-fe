@@ -40,6 +40,7 @@ const config = {
       colors: {
         dark: "#0d1326",
         light: "#f9f9f9",
+        secondary: "#cc021b",
       },
     },
   },

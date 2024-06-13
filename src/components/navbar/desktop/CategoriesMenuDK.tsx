@@ -16,7 +16,7 @@ const CategoriesMenuDk = async () => {
     );
   }
   const categoriesData = await response?.json();
-  console.log(categoriesData);
+
   return (
     <MenubarContent className="z-[999] bg-dark me-2 rounded-none grid grid-cols-1 md:grid-cols-2 gap-4">
       {categoriesData.map((item: any) => (

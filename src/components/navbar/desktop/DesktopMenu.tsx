@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   Menubar,
   MenubarTrigger,
@@ -6,9 +5,8 @@ import {
   MenubarSeparator,
 } from "../../ui/menubar";
 import BrandsMenuDk from "./BrandsMenuDK";
+import Cart from "./Cart";
 import CategoriesMenuDk from "./CategoriesMenuDK";
-import ImageWrapper from "@/atoms/ImageWrapper";
-import IconCart from "@public/icons/icon-cart.svg";
 
 const DesktopMenu = async () => {
   return (
@@ -27,14 +25,7 @@ const DesktopMenu = async () => {
         <BrandsMenuDk />
       </MenubarMenu>
       <MenubarSeparator className="bg-light w-px h-full"></MenubarSeparator>
-      <Link href="/cart" className="px-6">
-        <ImageWrapper
-          src={IconCart}
-          alt="Cart Icon"
-          imageSize="h-4 w-4 md:h-6 md:w-6"
-          sizes="10vw"
-        />
-      </Link>
+      <Cart />
     </Menubar>
   );
 };
