@@ -7,10 +7,9 @@ const Brands = async () => {
   if (!response?.ok) {
     return <NoData />;
   }
-  const brandData = await response?.json();
-  console.log(brandData);
+  // const brandData = await response?.json();
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen border-2 border-light">
       <ul>Brands</ul>
     </div>
   );

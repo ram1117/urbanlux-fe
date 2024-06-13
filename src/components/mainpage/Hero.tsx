@@ -6,8 +6,8 @@ const Hero = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center w-full relative">
       <ImageCarousel />
-      <div className="text-light flex flex-col gap-4 items-center justify-center max-w-[1200px] w-5/6">
-        <h1 className="font-bold text-4xl lg:text-6xl uppercase tracking-widest">
+      <div className="text-light flex flex-col gap-4 items-center justify-center max-w-[1200px] w-5/6 mt-16 md:mt-0">
+        <h1 className="font-bold text-4xl lg:text-6xl uppercase tracking-widest text-center">
           Urban Trend
         </h1>
         <p className="text-lg lg:text-xl font-medium text-center leading-8">
