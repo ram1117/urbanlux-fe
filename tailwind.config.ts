@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        newsletter: `url('/images/footer.jpg')`,
+      },
       fontFamily: {
         montserrat: "var(--var-montserrat)",
         cantarell: "var(--var-cantarell)",

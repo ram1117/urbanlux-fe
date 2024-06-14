@@ -1,6 +1,6 @@
 const NewsLetter = () => {
   return (
-    <section className="min-h-[40vh] bg-dark text-light flex flex-col items-center justify-center py-12 lg:py-4 px-4">
+    <section className="min-h-[40vh] bg-dark text-light flex flex-col items-center justify-center py-12 lg:py-4 px-4 bg-newsletter bg-no-repeat sm:bg-cover bg-fill">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center w-11/12">
         <div className="">
           <h2 className="text-xl lg:text-3xl font-semibold">Subscribe Now</h2>
