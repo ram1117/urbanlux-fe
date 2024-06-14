@@ -22,7 +22,7 @@ const Hero = () => {
           className="bg-transparent rounded-none my-8 p-6"
         >
           <Link href="/products" className="text-base lg:text-xl">
-            Explore Products
+            Shop Now
           </Link>
         </Button>
       </div>

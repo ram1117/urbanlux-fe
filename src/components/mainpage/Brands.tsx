@@ -1,15 +1,14 @@
-import NoData from "@/atoms/NoData";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getBrands } from "@/lib/api/apiurls";
+import { getTopBrands } from "@/lib/api/apiurls";
 import { Suspense } from "react";
 import SectionSkeleton from "@/atoms/SectionSkeleton";
 import { IBrandItem } from "@/interfaces";
 import BrandItem from "./BrandItem";
 
 const Brands = async () => {
-  const response = await makeApiRequest(API_METHODS.GET, getBrands());
+  const response = await makeApiRequest(API_METHODS.GET, getTopBrands());
   if (!response?.ok) {
-    return <NoData />;
+    return <></>;
   }
   const brandData: IBrandItem[] = await response?.json();
 

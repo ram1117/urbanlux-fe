@@ -16,3 +16,11 @@ export interface IFeatureItem {
   icon: StaticImageData;
   alt: string;
 }
+
+export interface ICategory {
+  _id: string;
+  name: string;
+  description: string;
+  category_code: string;
+  thumbnail: string;
+}

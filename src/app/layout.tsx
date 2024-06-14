@@ -5,7 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 export const metadata: Metadata = {
   title: "UrbanLux",
-  description: "Go to website for buying Urban fashionwares",
+  description: "Go to website for buying Urban and street fashion",
 };
 
 export default function RootLayout({

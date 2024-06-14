@@ -18,7 +18,7 @@ const CategoriesMenuDk = async () => {
   const categoriesData = await response?.json();
 
   return (
-    <MenubarContent className="z-[999] bg-dark me-2 rounded-none grid grid-cols-1 md:grid-cols-2 gap-4">
+    <MenubarContent className="z-[999] bg-dark me-2 rounded-none grid grid-cols-1 gap-2">
       {categoriesData.map((item: any) => (
         <MenubarItem key={item._id}>
           <Link href={`/products?category=${item.category_code}`}>
@@ -26,7 +26,7 @@ const CategoriesMenuDk = async () => {
               <ImageWrapper
                 src={item.thumbnail}
                 alt="category thumbnail"
-                imageSize="h-10 w-10 lg:h-20 lg:w-20"
+                imageSize="h-10 w-10"
               />
               <h3 className="text-sm md:text-lg font-semibold">{item.name}</h3>
             </div>
