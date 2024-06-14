@@ -1,14 +1,14 @@
-# Ruby Resorts
+# Urban Trend
 
 ## Description
 
-**Ruby Resorts** is a NextJS14 page for Ruby Resorts, with full authentication implemented in NestJs backend, payment integration with Stripe. User can book reservations, check availability with dates and pay for their reservations with date and can cancel the reservation.
+**Urban Trend** is a NextJS14 page for and e-commerce store, with full authentication implemented in NestJs backend, payment integration with Stripe.
 
 Tech stack - Typescript, TailwindCSS
 
 ### Live Demo
 
-[Live Demo on Vercel](https://rubyresorts-fe.vercel.app/)
+[Live Demo on Vercel](TBA)
 
 ## Getting Started
 
@@ -22,12 +22,12 @@ Tech stack - Typescript, TailwindCSS
 - Clone the repo in your local machine.
 
   ```
-  https://github.com/ram1117/rubyresorts-fe.git
+  https://github.com/ram1117/urbanlux-fe.git
   ```
 
 - Run the following command to install the project dependencies using npm
   ```
-  cd rubyresorts-fe
+  cd urbanlux-fe
   ```
   ```
   npm install
@@ -46,7 +46,7 @@ Tech stack - Typescript, TailwindCSS
 Please raise a Github issue for errors or bugs.
 
 ```
-https://github.com/ram1117/rubyresorts-fe/issues
+https://github.com/ram1117/urbanlux-fe/issues
 ```
 
 ## Authors
