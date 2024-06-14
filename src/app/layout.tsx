@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
-
+import { montserrat, cantarell } from "@/atoms/fonts";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
 export const metadata: Metadata = {
   title: "UrbanLux",
-  description: "Go to website for buying Urban fashionwares",
+  description: "Go to website for buying Urban and street fashion",
 };
 
 export default function RootLayout({
@@ -15,8 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${montserrat.variable} ${cantarell.variable}`}>
+      <body className="font-montserrat">
+        <header>
+          <Navbar />
+        </header>
+
+        {children}
+
+        <Footer />
+      </body>
     </html>
   );
 }
