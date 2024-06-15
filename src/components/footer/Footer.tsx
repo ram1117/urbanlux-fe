@@ -71,7 +71,7 @@ const Footer = () => {
             </div>
             <div>
               <h6 className="font-semibold">Email</h6>
-              <p>UrbanTrenzz@outlook.com</p>
+              <p>UrbanTrendz@outlook.com</p>
             </div>
           </div>
         </div>
