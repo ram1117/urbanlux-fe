@@ -33,3 +33,16 @@ export interface SigninFormState {
     _form?: string[];
   };
 }
+
+export interface ISignupFormState {
+  success?: boolean;
+  errors: {
+    _form?: string[];
+    firstname?: string[];
+    lastname?: string[];
+    email?: string[];
+    password?: string[];
+    password1?: string[];
+    mobile?: string[];
+  };
+}

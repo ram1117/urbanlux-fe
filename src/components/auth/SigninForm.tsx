@@ -41,7 +41,6 @@ const SigninForm = () => {
         router.push("/");
       } catch (error) {
         if (error instanceof FirebaseError) {
-          console.log(error.code);
           setFormState({ errors: { _form: [error.message] } });
         }
       }
