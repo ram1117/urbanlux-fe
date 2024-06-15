@@ -10,7 +10,7 @@ const Hero = () => {
         <h1 className="font-bold text-4xl lg:text-6xl uppercase tracking-widest text-center">
           Urban Trend
         </h1>
-        <p className="text-lg lg:text-xl font-medium text-center leading-8">
+        <p className="text-lg lg:text-xl font-medium text-center leading-2 lg:leading-8">
           Discover the latest in urban fashion at Urban Trend! We&apos;re your
           go-to destination for cutting-edge streetwear, offering a curated
           collection of trendy apparel, bold accessories, and must-have
