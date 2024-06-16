@@ -24,3 +24,25 @@ export interface ICategory {
   category_code: string;
   thumbnail: string;
 }
+
+export interface SigninFormState {
+  success?: boolean;
+  errors: {
+    email?: string[];
+    password?: string[];
+    _form?: string[];
+  };
+}
+
+export interface ISignupFormState {
+  success?: boolean;
+  errors: {
+    _form?: string[];
+    firstname?: string[];
+    lastname?: string[];
+    email?: string[];
+    password?: string[];
+    password1?: string[];
+    mobile?: string[];
+  };
+}

@@ -6,7 +6,7 @@ import IconYt from "@public/icons/iconyt.svg";
 
 const Footer = () => {
   return (
-    <footer className="min-h-[50vh] bg-dark text-light p-4 lg:p-10">
+    <footer className="min-h-[30vh] bg-dark text-light p-4 lg:p-10">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Logo,Address and social pages */}
         <div className="flex flex-col gap-4">
@@ -71,7 +71,7 @@ const Footer = () => {
             </div>
             <div>
               <h6 className="font-semibold">Email</h6>
-              <p>UrbanTrenzz@outlook.com</p>
+              <p>UrbanTrendz@outlook.com</p>
             </div>
           </div>
         </div>

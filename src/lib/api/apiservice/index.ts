@@ -23,8 +23,5 @@ export const makeApiRequest = async (
       body: JSON.stringify(data),
       headers: { "Content-type": "application/json", Cookie: cookies },
     });
-  } catch (error) {
-    if (error instanceof Error) console.error(error.message);
-    console.error("Error fetching data");
-  }
+  } catch (error) {}
 };
