@@ -48,7 +48,9 @@ const UserProfile = () => {
       {user && (
         <MenubarItem className="hover:text-dark focus:bg-dark">
           <div className="flex flex-col gap-4 text-light w-full font-semibold">
-            <p className="capitalize font-light text-lg">{user}</p>
+            <p className="capitalize font-light text-lg text-center underline underline-offset-8">
+              Hi {user.split(" ")[0]}
+            </p>
             <Link
               href={"/profile"}
               className="py-2 hover:bg-light hover:text-dark text-center"

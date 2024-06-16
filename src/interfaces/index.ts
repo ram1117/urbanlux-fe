@@ -46,3 +46,28 @@ export interface ISignupFormState {
     mobile?: string[];
   };
 }
+
+export interface IMerchandiseItem {
+  _id: string;
+  name: string;
+  description: string;
+  features: string[];
+  thumbnail: string;
+  images: string[];
+  category_code: string;
+  brand_code: string;
+  brand: {
+    _id: string;
+    name: string;
+  };
+  inventory: {
+    _id: string;
+    size: string;
+    stock: number;
+    price: number;
+    createdAt: Date;
+    updatedAt: Date;
+  }[];
+  createdAt: Date;
+  updatedAt: Date;
+}

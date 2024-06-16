@@ -20,9 +20,12 @@ const CategoriesMenuDk = async () => {
   return (
     <MenubarContent className="z-[999] bg-dark me-2 rounded-none grid grid-cols-1 gap-2">
       {categoriesData.map((item: any) => (
-        <MenubarItem key={item._id}>
-          <Link href={`/products?category=${item.category_code}`}>
-            <div className="my-2 flex gap-4 w-full items-center text-light hover:text-dark">
+        <MenubarItem
+          key={item._id}
+          className="focus:text-dark focus:bg-light text-light"
+        >
+          <Link href={`/categories/${item.category_code}`}>
+            <div className="my-2 flex gap-4 w-full items-center">
               <ImageWrapper
                 src={item.thumbnail}
                 alt="category thumbnail"
@@ -33,6 +36,14 @@ const CategoriesMenuDk = async () => {
           </Link>
         </MenubarItem>
       ))}
+      <MenubarItem className="focus:text-dark focus:bg-light text-light">
+        <Link
+          href={"/categories"}
+          className="text-center w-full p-2 text-lg font-semibold"
+        >
+          More Items
+        </Link>
+      </MenubarItem>
     </MenubarContent>
   );
 };

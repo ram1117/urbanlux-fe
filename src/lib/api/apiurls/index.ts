@@ -4,4 +4,7 @@ const AUTH_BASE_URL = process.env.API_AUTH;
 
 export const getCategories = () => `${MERCHANDISE_BASE_URL}/category`;
 export const getTopBrands = () => `${MERCHANDISE_BASE_URL}/brandstore`;
+export const getAllBrands = () => `${MERCHANDISE_BASE_URL}/brand`;
+export const getBrandItems = (brandcode: string) =>
+  `${MERCHANDISE_BASE_URL}?brandcode=${brandcode}`;
 export const postCreateUser = () => `${AUTH_BASE_URL}/auth/signup`;

@@ -22,9 +22,12 @@ const BrandsMenuDk = async () => {
     <Suspense fallback={<MenuSkeleton></MenuSkeleton>}>
       <MenubarContent className="z-[999] bg-dark me-2 rounded-none grid grid-cols-1 gap-2">
         {brandData.map((item: any) => (
-          <MenubarItem key={item._id}>
-            <Link href={`/products?brand=${item.brand_code}`}>
-              <div className="my-2 flex gap-4 w-full items-center text-light hover:text-dark">
+          <MenubarItem
+            key={item._id}
+            className="focus:text-dark focus:bg-light text-light"
+          >
+            <Link href={`/brands/${item.brand_code}`}>
+              <div className="my-2 flex gap-4 w-full items-center">
                 <ImageWrapper
                   src={item.logo}
                   alt="brand-logo"
@@ -37,6 +40,14 @@ const BrandsMenuDk = async () => {
             </Link>
           </MenubarItem>
         ))}
+        <MenubarItem className="focus:text-dark focus:bg-light text-light">
+          <Link
+            href={"/brands"}
+            className="text-center w-full p-2 text-lg font-semibold"
+          >
+            More brands
+          </Link>
+        </MenubarItem>
       </MenubarContent>
     </Suspense>
   );

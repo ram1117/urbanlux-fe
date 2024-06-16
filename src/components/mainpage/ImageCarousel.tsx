@@ -25,44 +25,6 @@ const ImageCarousel = () => {
           key={currentIndex}
         ></MainImageItem>
       }
-      {/* <ul className="flex gap-4 items-center justify-center absolute inset-x-0 bottom-4">
-        <li key={1}>
-          <input
-            type="radio"
-            value={0}
-            className="border-2 rounded-full !border-slate-200 accent-light radio-color cursor-pointer"
-            name="main-image"
-            checked={currentIndex === 0}
-            onChange={() => {
-              setCurrentIndex(0);
-            }}
-          ></input>
-        </li>
-        <li key={2}>
-          <input
-            type="radio"
-            value={0}
-            className="border-2 rounded-full !border-slate-200 accent-light radio-color cursor-pointer"
-            name="main-image"
-            checked={currentIndex === 1}
-            onChange={() => {
-              setCurrentIndex(1);
-            }}
-          ></input>
-        </li>
-        <li key={3}>
-          <input
-            type="radio"
-            value={0}
-            className="border-2 rounded-full !border-slate-200 accent-light radio-color cursor-pointer"
-            name="main-image"
-            checked={currentIndex === 2}
-            onChange={() => {
-              setCurrentIndex(2);
-            }}
-          ></input>
-        </li>
-      </ul> */}
     </div>
   );
 };
