@@ -23,6 +23,8 @@ const ImageWrapper = ({
         className={`${className}`}
         sizes={`${sizes}`}
         fill
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8fPlEPQAH3gLvrydgQQAAAABJRU5ErkJggg=="
       />
     </div>
   );

@@ -1,56 +1,58 @@
 import ImageWrapper from "@/atoms/ImageWrapper";
-import { MenubarItem, MenubarContent } from "@/components/ui/menubar";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
 import { getTopBrands } from "@/lib/api/apiurls";
 import Link from "next/link";
 import { Suspense } from "react";
 import MenuSkeleton from "../MenuSkeleton";
 
-const BrandsMenuDk = async () => {
+const BrandsMenu = async () => {
   const response = await makeApiRequest(API_METHODS.GET, getTopBrands());
   if (!response?.ok) {
     return (
-      <MenubarContent className="z-[999]">
-        <MenubarItem>
-          <Link href="/products">Explore Products</Link>
-        </MenubarItem>
-      </MenubarContent>
+      <li>
+        <li>
+          <Link
+            href={"/brands"}
+            className="text-center w-full p-2 text-lg font-semibold"
+          >
+            All brands
+          </Link>
+        </li>
+      </li>
     );
   }
   const brandData = await response?.json();
   return (
     <Suspense fallback={<MenuSkeleton></MenuSkeleton>}>
-      <MenubarContent className="z-[999] bg-dark me-2 rounded-none grid grid-cols-1 gap-2">
+      <ul className="text-dark">
         {brandData.map((item: any) => (
-          <MenubarItem
-            key={item._id}
-            className="focus:text-dark focus:bg-light text-light"
-          >
+          <li key={item._id}>
             <Link href={`/brands/${item._id}`}>
               <div className="my-2 flex gap-4 w-full items-center">
                 <ImageWrapper
                   src={item.logo}
                   alt="brand-logo"
                   imageSize="h-10 w-10"
+                  sizes="(max-width:768px)20vw,10vw"
                 />
-                <h3 className="text-sm md:text-lg font-semibold">
+                <h3 className="text-sm md:text-base font-medium">
                   {item.name}
                 </h3>
               </div>
             </Link>
-          </MenubarItem>
+          </li>
         ))}
-        <MenubarItem className="focus:text-dark focus:bg-light text-light">
+        <li className="ms-10 font-medium my-4">
           <Link
             href={"/brands"}
-            className="text-center w-full p-2 text-lg font-semibold"
+            className="text-center w-full p-2 text-base underline"
           >
-            More brands
+            All Brands
           </Link>
-        </MenubarItem>
-      </MenubarContent>
+        </li>
+      </ul>
     </Suspense>
   );
 };
 
-export default BrandsMenuDk;
+export default BrandsMenu;
