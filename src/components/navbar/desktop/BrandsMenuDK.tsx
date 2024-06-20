@@ -26,7 +26,7 @@ const BrandsMenuDk = async () => {
             key={item._id}
             className="focus:text-dark focus:bg-light text-light"
           >
-            <Link href={`/brands/${item.brand_code}`}>
+            <Link href={`/brands/${item._id}`}>
               <div className="my-2 flex gap-4 w-full items-center">
                 <ImageWrapper
                   src={item.logo}

@@ -28,7 +28,7 @@ const BrandItem = ({ brandItem, index }: BrandItemProps) => {
           variant={"outline"}
           className="bg-transparent w-max px-6 rounded-none"
         >
-          <Link href={`/brand?brand=${brandItem.brand_code}`}>Brand Store</Link>
+          <Link href={`/brands/${brandItem._id}`}>Brand Store</Link>
         </Button>
       </div>
     </div>

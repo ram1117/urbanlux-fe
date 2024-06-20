@@ -23,9 +23,11 @@ const TopBrands = async () => {
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-0">
         {topbrandsData.map((brand: IBrandItem) => {
           return (
-            <li key={brand._id} className="border-b border-b-dark py-2">
+            <li key={brand._id} className=" py-2">
               <h4 className="font-semibold text-base lg:text-lg w-max">
-                <Link href={`/brands/${brand.brand_code}`}>{brand.name}</Link>
+                <Link href={`/brands/${brand._id}`} className="underline">
+                  {brand.name}
+                </Link>
               </h4>
             </li>
           );

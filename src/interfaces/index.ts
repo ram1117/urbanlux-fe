@@ -6,6 +6,7 @@ export interface IBrandItem {
   description: string;
   brand_code: string;
   logo: string;
+  create_store: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -47,6 +48,15 @@ export interface ISignupFormState {
   };
 }
 
+export interface IInventory {
+  _id: string;
+  size: string;
+  stock: number;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface IMerchandiseItem {
   _id: string;
   name: string;
@@ -54,20 +64,10 @@ export interface IMerchandiseItem {
   features: string[];
   thumbnail: string;
   images: string[];
-  category_code: string;
-  brand_code: string;
-  brand: {
-    _id: string;
-    name: string;
-  };
-  inventory: {
-    _id: string;
-    size: string;
-    stock: number;
-    price: number;
-    createdAt: Date;
-    updatedAt: Date;
-  }[];
-  createdAt: Date;
-  updatedAt: Date;
+  category: ICategory;
+  brand: IBrandItem;
+  color: string;
+  inventory: IInventory[];
+  createdAt: string;
+  updatedAt: string;
 }

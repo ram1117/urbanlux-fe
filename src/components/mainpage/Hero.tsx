@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { Button } from "../ui/button";
 import ImageCarousel from "./ImageCarousel";
 
 const Hero = () => {
@@ -17,14 +15,6 @@ const Hero = () => {
           footwear. Our styles are inspired by the vibrant energy of city life,
           ensuring you stay ahead of the fashion curve.
         </p>
-        <Button
-          variant={"outline"}
-          className="bg-transparent rounded-none my-8 p-6"
-        >
-          <Link href="/products" className="text-base lg:text-xl">
-            Shop Now
-          </Link>
-        </Button>
       </div>
     </section>
   );
