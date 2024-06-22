@@ -21,6 +21,7 @@ const ItemMobileCarousel = ({ images }: ItemMobileCarouselProps) => {
               src={image}
               alt={"product image"}
               imageSize={"w-11/12 aspect-square max-w-[600px] mx-auto"}
+              sizes="(max-width:768px) 90vw,40vw"
             ></ImageWrapper>
           </CarouselItem>
         ))}

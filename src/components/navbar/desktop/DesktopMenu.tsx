@@ -12,7 +12,7 @@ import MenuImage from "@public/images/menu.jpg";
 
 const DesktopMenu = async () => {
   return (
-    <Menubar className="z-[999] rounded-none bg-transparent border-none">
+    <Menubar className="z-[950] rounded-none bg-transparent border-none">
       <MenubarMenu>
         <MenubarTrigger className="text-xs md:text-base border border-light text-light focus:bg-dark focus:text-light data-[state=open]:bg-light data-[state=open]:text-dark">
           Shop

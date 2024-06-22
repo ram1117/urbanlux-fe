@@ -5,10 +5,10 @@ import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
 import { getItemClient } from "@/lib/api/apiurls";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
-import ImageWrapper from "@/atoms/ImageWrapper";
 import FeaturesAccordion from "./FeaturesAccordion";
 import AddCartForm from "./AddCartForm";
 import ItemMobileCarousel from "./ItemMobileCarousel";
+import ImageModal from "./ImageModal";
 
 interface ItemSectionProps {
   itemid: string;
@@ -56,14 +56,9 @@ const ItemSection = ({ itemid }: ItemSectionProps) => {
       {item && (
         <div className="flex flex-col lg:flex-row gap-4 p-4">
           <ItemMobileCarousel images={item.images}></ItemMobileCarousel>
-          <div className="w-full lg:w-1/2  grid-cols-2 h-max hidden lg:grid">
+          <div className="w-full lg:w-1/2  grid-cols-2 gap-4 h-max hidden lg:grid">
             {item.images.map((image) => (
-              <ImageWrapper
-                src={image}
-                alt={"product image"}
-                imageSize={"w-full aspect-square"}
-                key={image}
-              ></ImageWrapper>
+              <ImageModal image={image} key={image}></ImageModal>
             ))}
           </div>
           <div className="w-full lg:w-1/2 flex flex-col">
