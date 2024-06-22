@@ -8,6 +8,7 @@ import { Skeleton } from "../ui/skeleton";
 import ImageWrapper from "@/atoms/ImageWrapper";
 import FeaturesAccordion from "./FeaturesAccordion";
 import AddCartForm from "./AddCartForm";
+import ItemMobileCarousel from "./ItemMobileCarousel";
 
 interface ItemSectionProps {
   itemid: string;
@@ -54,7 +55,8 @@ const ItemSection = ({ itemid }: ItemSectionProps) => {
       {loading && LoadingSkeleton}
       {item && (
         <div className="flex flex-col lg:flex-row gap-4 p-4">
-          <div className="w-full lg:w-1/2 grid grid-cols-2 h-max">
+          <ItemMobileCarousel images={item.images}></ItemMobileCarousel>
+          <div className="w-full lg:w-1/2  grid-cols-2 h-max hidden lg:grid">
             {item.images.map((image) => (
               <ImageWrapper
                 src={image}
