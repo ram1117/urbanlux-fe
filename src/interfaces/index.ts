@@ -6,6 +6,7 @@ export interface IBrandItem {
   description: string;
   brand_code: string;
   logo: string;
+  create_store: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -45,4 +46,51 @@ export interface ISignupFormState {
     password1?: string[];
     mobile?: string[];
   };
+}
+
+export interface IInventory {
+  _id: string;
+  size: string;
+  stock: number;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IMerchandiseItem {
+  _id: string;
+  name: string;
+  description: string;
+  features: string[];
+  thumbnail: string;
+  images: string[];
+  category: ICategory;
+  brand: IBrandItem;
+  base_price: number;
+  color: string;
+  inventory: IInventory[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IBrandFilterFormState {
+  data: IMerchandiseItem[];
+  success: boolean;
+  errors: { _form?: string[] };
+}
+
+export interface IAddCartFormState {
+  errors: {
+    inventory?: string[];
+    quantity?: string[];
+    _form?: string[];
+  };
+}
+
+export interface ICartItem {
+  name: string;
+  inventory: string;
+  quantity: string;
+  merchandise: string;
+  image: string;
 }

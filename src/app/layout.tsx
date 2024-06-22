@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} ${cantarell.variable}`}>
-      <body className="font-montserrat">
+      <body className="font-montserrat bg-light">
         <header>
           <Navbar />
         </header>
