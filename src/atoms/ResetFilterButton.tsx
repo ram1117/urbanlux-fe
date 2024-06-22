@@ -4,12 +4,18 @@ import { Button } from "@/components/ui/button";
 import ImageWrapper from "./ImageWrapper";
 import IconReset from "@public/icons/iconreset.svg";
 
-const ResetFilterButton = () => {
-  const handleReset = () => {
-    window.location.reload();
-  };
+interface ResetFilterButtonProps {
+  handleReset: () => void;
+}
+
+const ResetFilterButton = ({ handleReset }: ResetFilterButtonProps) => {
   return (
-    <Button onClick={handleReset} variant={"link"} className="text-base">
+    <Button
+      onClick={handleReset}
+      variant={"secondary"}
+      className="text-base border-2"
+      type="reset"
+    >
       <ImageWrapper
         src={IconReset}
         alt={"reset filter icon"}

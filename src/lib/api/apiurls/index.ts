@@ -17,3 +17,5 @@ export const getCategoriesClient = () =>
   `${MERCHANDISE_BASE_URL_CLIENT}/category`;
 export const getBrandItemsClient = (brandid: string) =>
   `${MERCHANDISE_BASE_URL_CLIENT}?brandid=${brandid}`;
+export const getItemClient = (id: string) =>
+  `${MERCHANDISE_BASE_URL_CLIENT}/item/${id}`;

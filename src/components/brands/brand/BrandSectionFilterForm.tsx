@@ -11,10 +11,11 @@ import {
 } from "@/interfaces";
 import { Skeleton } from "@/components/ui/skeleton";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getCategoriesClient } from "@/lib/api/apiurls";
+import { getBrandItemsClient, getCategoriesClient } from "@/lib/api/apiurls";
 import { useEffect, useState } from "react";
 import BrandFilterAction from "@/actions/brands/brandfilter.action";
 import { useFormState } from "react-dom";
+import ResetFilterButton from "@/atoms/ResetFilterButton";
 
 interface BrandFilterProps {
   setMerchItems: React.Dispatch<React.SetStateAction<IMerchandiseItem[]>>;
@@ -48,6 +49,12 @@ const BrandSectionFilterForm = ({
     }
   }, [formState, setMerchItems]);
 
+  const handleReset = () => {
+    makeApiRequest(API_METHODS.GET, getBrandItemsClient(brandid))
+      .then((response) => response?.json())
+      .then((data) => setMerchItems(data));
+  };
+
   return (
     <form action={formAction}>
       <h4 className="border-b-2">Price</h4>
@@ -70,8 +77,11 @@ const BrandSectionFilterForm = ({
           </Label>
         </div>
       ))}
+      <div className="grid grid-cols-2 gap-4">
+        <FormSubmit text="Filter"></FormSubmit>
+        <ResetFilterButton handleReset={handleReset}></ResetFilterButton>
+      </div>
 
-      <FormSubmit text="Filter"></FormSubmit>
       <p className="text-xs text-red-800">
         {formState.errors._form?.join(",")}
       </p>

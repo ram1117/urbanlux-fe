@@ -8,7 +8,6 @@ import {
   AccordionItem,
   AccordionContent,
 } from "../ui/accordion";
-import ResetFilterButton from "@/atoms/ResetFilterButton";
 
 interface BrandSectionFilterProps {
   setMerchItems: React.Dispatch<React.SetStateAction<IMerchandiseItem[]>>;
@@ -25,9 +24,6 @@ const BrandSectionFilter = ({
         <AccordionItem value={"filter-1"}>
           <AccordionTrigger>Filter</AccordionTrigger>
           <AccordionContent>
-            <div className="w-full flex justify-end">
-              <ResetFilterButton></ResetFilterButton>
-            </div>
             <BrandSectionFilterForm
               setMerchItems={setMerchItems}
               brandid={brandid}
@@ -38,7 +34,6 @@ const BrandSectionFilter = ({
       <div className="p-4 lg:block hidden">
         <div className="flex gap-4 justify-between items-center">
           <h4 className="py-2 text-lg font-semibold">Filter</h4>
-          <ResetFilterButton></ResetFilterButton>
         </div>
         <BrandSectionFilterForm
           setMerchItems={setMerchItems}

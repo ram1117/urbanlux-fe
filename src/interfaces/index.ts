@@ -78,3 +78,19 @@ export interface IBrandFilterFormState {
   success: boolean;
   errors: { _form?: string[] };
 }
+
+export interface IAddCartFormState {
+  errors: {
+    inventory?: string[];
+    quantity?: string[];
+    _form?: string[];
+  };
+}
+
+export interface ICartItem {
+  name: string;
+  inventory: string;
+  quantity: string;
+  merchandise: string;
+  image: string;
+}

@@ -1,1 +1,2 @@
-export const AUTH_COOKIE_KEY = "Authtoken";
+export const CART_KEY = "cartitems";
+export const CART_LIMIT = 6;

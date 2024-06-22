@@ -2,7 +2,7 @@ import Link from "next/link";
 import DesktopMenu from "./desktop/DesktopMenu";
 import ImageWrapper from "@/atoms/ImageWrapper";
 import IconUser from "@public/icons/iconuser.svg";
-import Cart from "./Cart";
+import Cart from "./cart/Cart";
 
 const Navbar = () => {
   return (
