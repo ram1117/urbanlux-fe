@@ -1,7 +1,5 @@
 import BrandSection from "@/components/brands/brand/BrandSection";
 
-export const validate = 1;
-
 const Page = async ({ params }: { params: { brandid: string } }) => {
   const brandid = params.brandid;
 
