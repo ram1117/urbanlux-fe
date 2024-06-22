@@ -8,8 +8,12 @@ export const getBrandsCategories = () =>
 export const getCategories = () => `${MERCHANDISE_BASE_URL}/category`;
 export const getTopBrands = () => `${MERCHANDISE_BASE_URL}/topbrands`;
 export const getAllBrands = () => `${MERCHANDISE_BASE_URL}/brand`;
-export const getBrandItems = (brandid: string) =>
-  `${MERCHANDISE_BASE_URL}?brandid=${brandid}`;
 export const postCreateUser = () => `${AUTH_BASE_URL}/auth/signup`;
-
 export const getLatest = () => `${MERCHANDISE_BASE_URL}/latest`;
+export const getFilteredBrands = (id: string) =>
+  `${MERCHANDISE_BASE_URL}/filterbrands/${id}`;
+
+export const getCategoriesClient = () =>
+  `${MERCHANDISE_BASE_URL_CLIENT}/category`;
+export const getBrandItemsClient = (brandid: string) =>
+  `${MERCHANDISE_BASE_URL_CLIENT}?brandid=${brandid}`;

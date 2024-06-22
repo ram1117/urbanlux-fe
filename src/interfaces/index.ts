@@ -66,8 +66,15 @@ export interface IMerchandiseItem {
   images: string[];
   category: ICategory;
   brand: IBrandItem;
+  base_price: number;
   color: string;
   inventory: IInventory[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface IBrandFilterFormState {
+  data: IMerchandiseItem[];
+  success: boolean;
+  errors: { _form?: string[] };
 }

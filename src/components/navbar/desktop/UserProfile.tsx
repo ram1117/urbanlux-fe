@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { MenubarContent } from "@/components/ui/menubar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useUserInfo } from "@/hooks/usersession.hooks";
 import { signOutUser } from "@/lib/firebase/firebase.auth";
@@ -31,38 +32,43 @@ const UserProfile = () => {
     );
   }
 
-  return (
-    <ul className="z-[999]">
-      {!user && (
-        <li className="text-dark">
-          <div className="w-full">
-            <Button variant={"outline"} className="rounded-none w-max">
-              <Link href={"/auth/signin"} className="font-semibold">
-                Sign In
-              </Link>
-            </Button>
-          </div>
-        </li>
-      )}
-      {user && (
-        <li className="flex flex-col">
-          <p className="capitalize font-light">Hi {user.split(" ")[0]}</p>
-          <Link href={"/profile"} className="py-2 font-medium">
-            Profile
-          </Link>
-          <Link href={"/orders"} className="py-2 font-medium">
-            Orders
-          </Link>
-          <Button
-            variant={"outline"}
-            onClick={handleSignOut}
-            className="rounded-none w-max"
-          >
-            Sign Out
+  if (!user)
+    return (
+      <MenubarContent asChild className="text-dark">
+        <div className="w-full">
+          <Button variant={"outline"} className="rounded-none w-max">
+            <Link href={"/auth/signin"} className="font-semibold">
+              Sign In
+            </Link>
           </Button>
-        </li>
-      )}
-    </ul>
+        </div>
+      </MenubarContent>
+    );
+
+  return (
+    <div className="z-[999]">
+      {" "}
+      <p className="capitalize font-light">Hi {user.split(" ")[0]}</p>
+      <MenubarContent asChild>
+        <Link href={"/profile"} className="py-2 font-medium">
+          Profile
+        </Link>
+      </MenubarContent>
+      <MenubarContent asChild>
+        <Link href={"/orders"} className="py-2 font-medium">
+          Orders
+        </Link>
+      </MenubarContent>
+      <MenubarContent asChild>
+        <Button
+          variant={"outline"}
+          onClick={handleSignOut}
+          className="rounded-none w-max"
+        >
+          Sign Out
+        </Button>
+      </MenubarContent>
+    </div>
   );
 };
 

@@ -4,11 +4,11 @@ import IconCart from "@public/icons/icon-cart.svg";
 
 const Cart = () => {
   return (
-    <Link href="/cart" className="px-6">
+    <Link href="/cart" className="">
       <ImageWrapper
         src={IconCart}
         alt="Cart Icon"
-        imageSize="h-4 w-4 md:h-6 md:w-6"
+        imageSize="h-6 w-6 lg:h-8 lg:w-8"
         sizes="10vw"
       />
     </Link>

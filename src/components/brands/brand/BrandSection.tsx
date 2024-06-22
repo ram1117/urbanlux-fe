@@ -1,30 +1,39 @@
 "use client";
 
 import { IMerchandiseItem } from "@/interfaces";
-import MerchandiseItem from "./MerchandiseItem";
+import { useEffect, useState } from "react";
+import MerchContainer from "@/atoms/MerchContainter";
+import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
+import { getBrandItemsClient } from "@/lib/api/apiurls";
+import BrandSectionFilter from "../BrandSectionFilter";
 
 interface BrandSectionProps {
-  items: IMerchandiseItem[];
+  brandid: string;
 }
 
-const BrandSection = ({ items }: BrandSectionProps) => {
-  const sizes = new Set<string>([]);
-  items.forEach((item: IMerchandiseItem) => {
-    item.inventory.forEach((inventory: any) => {
-      sizes.add(inventory.size);
-    });
-  });
+const BrandSection = ({ brandid }: BrandSectionProps) => {
+  const [merchItems, setMerchItems] = useState<IMerchandiseItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | undefined>();
 
-  console.log(sizes);
+  useEffect(() => {
+    makeApiRequest(API_METHODS.GET, getBrandItemsClient(brandid))
+      .then((response) => response?.json())
+      .then((data) => setMerchItems(data))
+      .catch((error) => setError(error.message));
+    setLoading(false);
+  }, [brandid]);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 p-4">
-      <div className="lg:col-span-1"></div>
-      <ul className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {items.map((item: IMerchandiseItem) => (
-          <MerchandiseItem key={item._id} item={item}></MerchandiseItem>
-        ))}
-      </ul>
+      {error && <p className="text-sm italic">{error}</p>}
+      <div className="lg:col-span-1">
+        <BrandSectionFilter
+          setMerchItems={setMerchItems}
+          brandid={brandid}
+        ></BrandSectionFilter>
+      </div>
+      <MerchContainer items={merchItems} loading={loading}></MerchContainer>
     </div>
   );
 };
