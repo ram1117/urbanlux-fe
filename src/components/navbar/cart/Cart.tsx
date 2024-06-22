@@ -43,7 +43,7 @@ const Cart = () => {
           <SheetTitle>Cart</SheetTitle>
           <SheetDescription>Your cart items</SheetDescription>
         </SheetHeader>
-        <div className="max-h-screen overflow-auto">
+        <div className="max-h-screen overflow-auto text-dark">
           {!hasItems && <p className="italic">Your cart is empty</p>}
           <ul className="flex flex-col gap-4">
             {items.map((item) => (
