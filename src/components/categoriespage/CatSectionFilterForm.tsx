@@ -1,47 +1,53 @@
 "use client";
 
-import FormSubmit from "@/atoms/FormSubmit";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import Slider from "@/components/ui/slider";
 import {
-  IBrandFilterFormState,
-  ICategory,
+  IBrandItem,
+  ICategoryFilterFormState,
   IMerchandiseItem,
 } from "@/interfaces";
-import { Skeleton } from "@/components/ui/skeleton";
-import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getBrandItemsClient, getCategoriesClient } from "@/lib/api/apiurls";
+import { Skeleton } from "../ui/skeleton";
+import Slider from "../ui/slider";
 import { useEffect, useState } from "react";
-import BrandFilterAction from "@/actions/brands/brandfilter.action";
-import { useFormState } from "react-dom";
+import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
+import { getBrandsClient, getCategoryItemsClient } from "@/lib/api/apiurls";
+import { Checkbox } from "../ui/checkbox";
+import { Label } from "../ui/label";
+import FormSubmit from "@/atoms/FormSubmit";
 import ResetFilterButton from "@/atoms/ResetFilterButton";
+import CategoryFilterAction from "@/actions/categories/categoryfilter.action";
+import { useFormState } from "react-dom";
 import SortFormElement from "@/atoms/SortFormElement";
 
-interface BrandFilterProps {
+interface CatSectionFilterFormProps {
+  categoryid: string;
   setMerchItems: React.Dispatch<React.SetStateAction<IMerchandiseItem[]>>;
-  brandid: string;
 }
 
-const initialState: IBrandFilterFormState = {
-  data: [],
-  success: false,
+const initialState: ICategoryFilterFormState = {
   errors: {},
+  success: false,
+  data: [],
 };
 
-const BrandSectionFilterForm = ({
+const CatSectionFilterForm = ({
+  categoryid,
   setMerchItems,
-  brandid,
-}: BrandFilterProps) => {
-  const [categories, setCategories] = useState<ICategory[]>([]);
+}: CatSectionFilterFormProps) => {
+  const [brands, setBrands] = useState<IBrandItem[]>([]);
 
   useEffect(() => {
-    makeApiRequest(API_METHODS.GET, getCategoriesClient())
+    makeApiRequest(API_METHODS.GET, getBrandsClient())
       .then((response) => response?.json())
-      .then((data) => setCategories(data));
+      .then((data) => setBrands(data));
   }, []);
 
-  const bindedAction = BrandFilterAction.bind(null, brandid);
+  const handleReset = () => {
+    makeApiRequest(API_METHODS.GET, getCategoryItemsClient(categoryid))
+      .then((response) => response?.json())
+      .then((data) => setMerchItems(data));
+  };
+
+  const bindedAction = CategoryFilterAction.bind(null, categoryid);
   const [formState, formAction] = useFormState(bindedAction, initialState);
 
   useEffect(() => {
@@ -49,19 +55,12 @@ const BrandSectionFilterForm = ({
       setMerchItems(formState.data);
     }
   }, [formState, setMerchItems]);
-
-  const handleReset = () => {
-    makeApiRequest(API_METHODS.GET, getBrandItemsClient(brandid))
-      .then((response) => response?.json())
-      .then((data) => setMerchItems(data));
-  };
-
   return (
     <form action={formAction}>
       <h4 className="border-b-2">Price</h4>
       <Slider></Slider>
-      <h4 className="border-b-2">Categories</h4>
-      {categories.length === 0 && (
+      <h4 className="border-b-2">Brands</h4>
+      {brands.length === 0 && (
         <>
           <Skeleton className="h-2 bg-slate-200 my-4 w-1/2"></Skeleton>
           <Skeleton className="h-2 bg-slate-200 my-4 w-1/2"></Skeleton>
@@ -69,13 +68,9 @@ const BrandSectionFilterForm = ({
         </>
       )}
       <ul className="max-h-[50vh] overflow-auto">
-        {categories.map((item) => (
+        {brands.map((item) => (
           <li key={item._id} className="flex items-center gap-2 my-2">
-            <Checkbox
-              id={item.name}
-              name="category"
-              value={item._id}
-            ></Checkbox>
+            <Checkbox id={item.name} name="brands" value={item._id}></Checkbox>
             <Label htmlFor={item.name} className="text-lg font-light">
               {" "}
               {item.name}
@@ -96,4 +91,4 @@ const BrandSectionFilterForm = ({
   );
 };
 
-export default BrandSectionFilterForm;
+export default CatSectionFilterForm;

@@ -1,21 +1,22 @@
 "use server";
 
-import { IBrandFilterFormState } from "@/interfaces";
+import { ICategoryFilterFormState } from "@/interfaces";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
 import { getFilteredItems } from "@/lib/api/apiurls";
 
-const BrandFilterAction = async (
-  brandid: string,
-  formState: IBrandFilterFormState,
+const CategoryFilterAction = async (
+  categoryid: string,
+  formState: ICategoryFilterFormState,
   formData: FormData,
-): Promise<IBrandFilterFormState> => {
+): Promise<ICategoryFilterFormState> => {
   const prices = formData.getAll("price[]") as string[];
-  const categories = formData.getAll("category");
+  const brands = formData.getAll("brands");
   const sortby = formData.get("sortby");
+
   try {
-    let bodyData: any = { brandid };
-    if (categories.length > 0) {
-      bodyData = { ...bodyData, categories };
+    let bodyData: any = { categoryid };
+    if (brands.length > 0) {
+      bodyData = { ...bodyData, brands };
     }
     if (prices.length > 0) {
       bodyData = {
@@ -39,6 +40,7 @@ const BrandFilterAction = async (
       return { data: [], success: false, errors: { _form: [error.message] } };
     }
     const data = await response.json();
+
     return { data, errors: {}, success: true };
   } catch (error) {
     if (error instanceof Error)
@@ -51,4 +53,4 @@ const BrandFilterAction = async (
   }
 };
 
-export default BrandFilterAction;
+export default CategoryFilterAction;
