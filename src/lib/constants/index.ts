@@ -8,3 +8,8 @@ export enum SORT_VALUES {
   PRICEDSC = "pricedsc",
   DATEDSC = "datadsc",
 }
+
+export enum CHARGES {
+  SHIPPING = 10,
+  TAX = 0.08,
+}

@@ -1,20 +1,24 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MenubarContent } from "@/components/ui/menubar";
+import {
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useUserInfo } from "@/hooks/usersession.hooks";
+import { useUserSession } from "@/hooks/usersession.hooks";
 import { signOutUser } from "@/lib/firebase/firebase.auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
-const UserProfile = () => {
-  const user = useUserInfo();
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    if (user === null || user) setLoading(false);
-  }, [user]);
+interface UserProfileProps {
+  initialUser: any;
+}
+
+const UserProfile = ({ initialUser }: UserProfileProps) => {
+  const { user, loading } = useUserSession(initialUser);
 
   const router = useRouter();
   const handleSignOut = async () => {
@@ -22,53 +26,55 @@ const UserProfile = () => {
     router.refresh();
   };
 
-  if (loading) {
-    return (
-      <ul className="z-[999] me-2 rounded-none grid grid-cols-1 gap-4 p-4">
-        <Skeleton className="w-full h-3 bg-neutral-400"></Skeleton>
-        <Skeleton className="w-full h-3 bg-neutral-400"></Skeleton>
-        <Skeleton className="w-full h-3 bg-neutral-400"></Skeleton>
-      </ul>
-    );
-  }
-
-  if (!user)
-    return (
-      <MenubarContent asChild className="text-dark">
-        <div className="w-full">
-          <Button variant={"outline"} className="rounded-none w-max">
-            <Link href={"/auth/signin"} className="font-semibold">
-              Sign In
-            </Link>
-          </Button>
-        </div>
-      </MenubarContent>
-    );
-
   return (
-    <div className="z-[999]">
-      {" "}
-      <p className="capitalize font-light">Hi {user.split(" ")[0]}</p>
-      <MenubarContent asChild>
-        <Link href={"/profile"} className="py-2 font-medium">
-          Profile
-        </Link>
-      </MenubarContent>
-      <MenubarContent asChild>
-        <Link href={"/orders"} className="py-2 font-medium">
-          Orders
-        </Link>
-      </MenubarContent>
-      <MenubarContent asChild>
-        <Button
-          variant={"outline"}
-          onClick={handleSignOut}
-          className="rounded-none w-max"
-        >
-          Sign Out
-        </Button>
-      </MenubarContent>
-    </div>
+    <MenubarMenu>
+      <MenubarTrigger className="text-xs md:text-base border border-light text-light focus:bg-dark focus:text-light data-[state=open]:bg-light data-[state=open]:text-dark">
+        Account
+      </MenubarTrigger>
+      {loading && (
+        <MenubarMenu>
+          <Skeleton className="h-2 w-full"></Skeleton>
+          <Skeleton className="h-2 w-full"></Skeleton>
+          <Skeleton className="h-2 w-full"></Skeleton>
+        </MenubarMenu>
+      )}
+      {!user && !loading && (
+        <MenubarContent className="flex flex-col items-center py-4">
+          <MenubarItem asChild>
+            <Button>
+              <Link href={"/auth/signin"}>Sign In</Link>
+            </Button>
+          </MenubarItem>
+        </MenubarContent>
+      )}
+      {user && !loading && (
+        <MenubarContent className=" py-4">
+          <div className="z-[999] w-full flex flex-col items-center gap-4">
+            {" "}
+            <p className="capitalize font-light">Hi</p>
+            <MenubarItem asChild className="w-full justify-center">
+              <Link href={"/profile"} className="py-2 font-medium text-center">
+                Profile
+              </Link>
+            </MenubarItem>
+            <MenubarItem asChild className="w-full justify-center">
+              <Link href={"/orders"} className="py-2 font-medium text-center">
+                Orders
+              </Link>
+            </MenubarItem>
+            <MenubarItem asChild>
+              <Button
+                variant={"default"}
+                onClick={handleSignOut}
+                className="rounded-none w-max"
+              >
+                Sign Out
+              </Button>
+            </MenubarItem>
+          </div>
+        </MenubarContent>
+      )}
+    </MenubarMenu>
   );
 };
 

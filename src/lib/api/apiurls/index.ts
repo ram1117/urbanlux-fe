@@ -11,6 +11,7 @@ export const getAllBrands = () => `${MERCHANDISE_BASE_URL}/brands`;
 export const postCreateUser = () => `${AUTH_BASE_URL}/auth/signup`;
 export const getLatest = () => `${MERCHANDISE_BASE_URL}/latest`;
 export const getFilteredItems = () => `${MERCHANDISE_BASE_URL}/filteritems`;
+export const getInventoryValues = () => `${MERCHANDISE_BASE_URL}/inventory`;
 
 export const getCategoriesClient = () =>
   `${MERCHANDISE_BASE_URL_CLIENT}/category`;

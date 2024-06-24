@@ -99,4 +99,6 @@ export interface ICartItem {
   quantity: string;
   merchandise: string;
   image: string;
+  price: number;
+  size: string;
 }

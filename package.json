@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build-service-worker && next build",
+    "build-service-worker": "npx esbuild auth-service-worker.js --bundle --outfile=public/auth-service-worker.js",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
@@ -25,6 +26,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.1.5",
+    "esbuild": "^0.21.5",
     "firebase": "^10.12.2",
     "firebaseui": "^6.1.0",
     "framer-motion": "^11.2.10",

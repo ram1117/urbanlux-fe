@@ -8,7 +8,7 @@ const BrandsMenu = async () => {
   const response = await makeApiRequest(API_METHODS.GET, getTopBrands());
   if (!response?.ok) {
     return (
-      <MenubarItem className="text-dark" asChild>
+      <MenubarItem className="text-dark text-lg font-semibold" asChild>
         <Link
           href={"/brands"}
           className="text-center w-full p-2 text-lg font-semibold"

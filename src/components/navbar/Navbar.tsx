@@ -1,10 +1,14 @@
 import Link from "next/link";
 import DesktopMenu from "./desktop/DesktopMenu";
-import ImageWrapper from "@/atoms/ImageWrapper";
-import IconUser from "@public/icons/iconuser.svg";
 import Cart from "./cart/Cart";
+import UserProfile from "./desktop/UserProfile";
+import { Menubar } from "../ui/menubar";
 
-const Navbar = () => {
+interface NavbarProps {
+  initialUser: any;
+}
+
+const Navbar = ({ initialUser }: NavbarProps) => {
   return (
     <nav className=" p-4 gap-4 flex items-center justify-between bg-dark z-[995]">
       <Link href="/">
@@ -15,15 +19,10 @@ const Navbar = () => {
       </Link>
 
       <div className="flex gap-2 items-center">
-        <DesktopMenu />
-        <Link href="/account" className="">
-          <ImageWrapper
-            src={IconUser}
-            alt="User Icon"
-            imageSize="h-6 w-6 lg:h-8 lg:w-8"
-            sizes="10vw"
-          />
-        </Link>
+        <Menubar className="z-[950] rounded-none bg-transparent border-none">
+          <DesktopMenu />
+          <UserProfile initialUser={initialUser}></UserProfile>
+        </Menubar>
         <Cart />
       </div>
     </nav>
