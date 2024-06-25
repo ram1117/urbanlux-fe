@@ -11,7 +11,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useUserSession } from "@/hooks/usersession.hooks";
 import { signOutUser } from "@/lib/firebase/firebase.auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 interface UserProfileProps {
   initialUser: any;
@@ -20,10 +19,9 @@ interface UserProfileProps {
 const UserProfile = ({ initialUser }: UserProfileProps) => {
   const { user, loading } = useUserSession(initialUser);
 
-  const router = useRouter();
   const handleSignOut = async () => {
     await signOutUser();
-    router.refresh();
+    window.location.reload();
   };
 
   return (
@@ -58,7 +56,10 @@ const UserProfile = ({ initialUser }: UserProfileProps) => {
               </Link>
             </MenubarItem>
             <MenubarItem asChild className="w-full justify-center">
-              <Link href={"/orders"} className="py-2 font-medium text-center">
+              <Link
+                href={"/account/orders"}
+                className="py-2 font-medium text-center"
+              >
                 Orders
               </Link>
             </MenubarItem>

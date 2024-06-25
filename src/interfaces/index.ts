@@ -102,3 +102,76 @@ export interface ICartItem {
   price: number;
   size: string;
 }
+
+export interface IPlaceOrderItem {
+  inventory: string;
+  quantity: number;
+  merchandise: string;
+}
+
+export interface IFormAddressItem {
+  billing: string;
+  delivery: string;
+}
+
+export interface IAddressItem {
+  _id: string;
+  fullname: string;
+  label: string;
+  line1: string;
+  line2: string;
+  city: string;
+  state: string;
+  postal_code: string;
+  country: string;
+  user: string;
+}
+
+export interface IAddressItems {
+  delivery: IAddressItem[];
+  billing: IAddressItem[];
+}
+
+export interface IAddAddressFormState {
+  success: boolean;
+  errors: {
+    label?: string[];
+    address_type?: string[];
+    line1?: string[];
+    line2?: string[];
+    city?: string[];
+    state?: string[];
+    postal_code?: string[];
+    country?: string[];
+    _form?: string[];
+  };
+}
+
+export interface IOrderItem {
+  _id: string;
+  merchandise: string;
+  quantity: number;
+  size: string;
+  subtotal: number;
+  status: string;
+  user: string;
+  inventory: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IOrder {
+  _id: string;
+  items: IOrderItem[];
+  total: number;
+  address: IAddressItem;
+  payment_status: string;
+  user: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IPaymentSummary {
+  secret: string;
+  order: IOrder;
+}

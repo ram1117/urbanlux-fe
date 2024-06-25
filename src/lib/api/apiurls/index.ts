@@ -1,7 +1,8 @@
 const MERCHANDISE_BASE_URL = process.env.API_MERCHANDISE;
 const MERCHANDISE_BASE_URL_CLIENT = process.env.NEXT_PUBLIC_API_MERCHANDISE;
 const AUTH_BASE_URL = process.env.API_AUTH;
-// const ORDERING_BASE_URL = process.env.API_ORDERING;
+const ORDERING_BASE_URL = process.env.API_ORDERING;
+const ORDERING_BASE_URL_CLIENT = process.env.NEXT_PUBLIC_API_ORDERING;
 
 export const getBrandsCategories = () =>
   `${MERCHANDISE_BASE_URL_CLIENT}/brandscategories`;
@@ -22,3 +23,13 @@ export const getCategoryItemsClient = (id: string) =>
   `${MERCHANDISE_BASE_URL_CLIENT}?categoryid=${id}`;
 export const getItemClient = (id: string) =>
   `${MERCHANDISE_BASE_URL_CLIENT}/item/${id}`;
+
+export const getAddresses = () => `${ORDERING_BASE_URL_CLIENT}/address`;
+export const addAddress = () => `${ORDERING_BASE_URL_CLIENT}/address`;
+
+export const placeOrder = () => `${ORDERING_BASE_URL}/order`;
+
+export const getPaymentSecret = (orderid: string) =>
+  `${ORDERING_BASE_URL}/order/payment/${orderid}`;
+
+export const getOrders = () => `${ORDERING_BASE_URL}/order`;

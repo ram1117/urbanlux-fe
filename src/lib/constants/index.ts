@@ -13,3 +13,8 @@ export enum CHARGES {
   SHIPPING = 10,
   TAX = 0.08,
 }
+
+export enum ADDRESS_TYPE {
+  DELIVERY = "delivery",
+  BILLING = "billing",
+}

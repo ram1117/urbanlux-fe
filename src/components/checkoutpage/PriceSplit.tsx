@@ -45,7 +45,7 @@ const PriceSplit = ({ cartitems }: PriceSplitProps) => {
               <ImageWrapper
                 src={item.image}
                 alt={"product thumbnail"}
-                imageSize={"w-10 aspect-square"}
+                imageSize={"w-10 lg:w-20 aspect-square"}
               ></ImageWrapper>
             </TableCell>
             <TableCell>
@@ -84,7 +84,7 @@ const PriceSplit = ({ cartitems }: PriceSplitProps) => {
           <TableCell colSpan={3} className="">
             Total
           </TableCell>
-          <TableCell>{total}</TableCell>
+          <TableCell>$ {total}</TableCell>
         </TableRow>
       </TableFooter>
     </Table>
