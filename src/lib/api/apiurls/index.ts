@@ -28,13 +28,13 @@ export const getAddresses = () => `${ORDERING_BASE_URL_CLIENT}/address`;
 export const addAddress = () => `${ORDERING_BASE_URL_CLIENT}/address`;
 
 export const placeOrder = () => `${ORDERING_BASE_URL}/order`;
-
 export const getPaymentSecret = (orderid: string) =>
   `${ORDERING_BASE_URL}/order/payment/${orderid}`;
 export const updatePaymentStatus = (intent_id: string) =>
   `${ORDERING_BASE_URL}/order/payment/${intent_id}`;
-
 export const getOrders = () => `${ORDERING_BASE_URL}/order`;
 export const getOrderById = (id: string) => `${ORDERING_BASE_URL}/order/${id}`;
 export const cancelOrder = (id: string) =>
   `${ORDERING_BASE_URL}/order/cancel/${id}`;
+
+export const getUserProfile = () => `${AUTH_BASE_URL}/user`;

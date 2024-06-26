@@ -155,7 +155,6 @@ export interface IOrderItem {
   quantity: number;
   size: string;
   subtotal: number;
-  status: string;
   user: string;
   inventory: string;
   createdAt: string;
@@ -169,6 +168,7 @@ export interface IOrder {
   total: number;
   address: IAddressItem;
   payment_status: string;
+  order_status: string;
   user: string;
   createdAt: string;
   updatedAt: string;
@@ -187,4 +187,15 @@ export interface ICancelOrderFormState {
     _form?: string[];
     orderitems?: string[];
   };
+}
+
+export interface IUserInfo {
+  _id: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  role: string;
+  mobile: string;
+  createdAt: string;
+  updatedAt: string;
 }

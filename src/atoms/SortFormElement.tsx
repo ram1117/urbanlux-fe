@@ -7,7 +7,7 @@ const SortFormElement = () => {
     <>
       <h4 className="border-b-2">Sort by</h4>
       <RadioGroup
-        className="max-h-[50vh] overflow-auto gap-1 py-4"
+        className="max-h-[50vh] overflow-auto gap-3 py-4"
         name="sortby"
       >
         <li key={SORT_VALUES.DATEDSC} className="flex items-center gap-2">
@@ -15,7 +15,7 @@ const SortFormElement = () => {
             id={SORT_VALUES.DATEDSC}
             value={SORT_VALUES.DATEDSC}
           ></RadioGroupItem>
-          <Label htmlFor={SORT_VALUES.DATEDSC} className="text-lg font-light">
+          <Label htmlFor={SORT_VALUES.DATEDSC} className=" font-light">
             Latest
           </Label>
         </li>
@@ -24,7 +24,7 @@ const SortFormElement = () => {
             id={SORT_VALUES.PRICEASC}
             value={SORT_VALUES.PRICEASC}
           ></RadioGroupItem>
-          <Label htmlFor={SORT_VALUES.PRICEASC} className="text-lg font-light">
+          <Label htmlFor={SORT_VALUES.PRICEASC} className=" font-light">
             Price Low-High
           </Label>
         </li>
@@ -33,7 +33,7 @@ const SortFormElement = () => {
             id={SORT_VALUES.PRICEDSC}
             value={SORT_VALUES.PRICEDSC}
           ></RadioGroupItem>
-          <Label htmlFor={SORT_VALUES.PRICEDSC} className="text-lg font-light">
+          <Label htmlFor={SORT_VALUES.PRICEDSC} className=" font-light">
             Price High-Low
           </Label>
         </li>
@@ -43,7 +43,7 @@ const SortFormElement = () => {
             id={SORT_VALUES.ALPHASC}
             value={SORT_VALUES.ALPHASC}
           ></RadioGroupItem>
-          <Label htmlFor={SORT_VALUES.ALPHASC} className="text-lg font-light">
+          <Label htmlFor={SORT_VALUES.ALPHASC} className=" font-light">
             A-Z
           </Label>
         </li>
@@ -52,7 +52,7 @@ const SortFormElement = () => {
             id={SORT_VALUES.ALPHDSC}
             value={SORT_VALUES.ALPHDSC}
           ></RadioGroupItem>
-          <Label htmlFor={SORT_VALUES.ALPHDSC} className="text-lg font-light">
+          <Label htmlFor={SORT_VALUES.ALPHDSC} className=" font-light">
             Z-A
           </Label>
         </li>

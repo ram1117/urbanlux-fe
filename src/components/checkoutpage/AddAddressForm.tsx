@@ -9,6 +9,7 @@ import { useFormState } from "react-dom";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { ADDRESS_TYPE } from "@/lib/constants";
 import { Label } from "../ui/label";
+import { usePathname } from "next/navigation";
 
 interface AddAddressFormProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +21,9 @@ const initialState: IAddAddressFormState = {
 };
 
 const AddAddressForm = ({ setOpen }: AddAddressFormProps) => {
-  const [formState, formAction] = useFormState(AddAddressAction, initialState);
+  const pathname = usePathname();
+  const bindedAction = AddAddressAction.bind(null, `/${pathname}`);
+  const [formState, formAction] = useFormState(bindedAction, initialState);
 
   useEffect(() => {
     if (formState.success) setOpen(false);

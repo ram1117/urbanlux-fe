@@ -60,7 +60,6 @@ const Page = async ({ params }: { params: { orderid: string } }) => {
                 <TableHead>Size</TableHead>
                 <TableHead>Qty</TableHead>
                 <TableHead>Price $</TableHead>
-                <TableHead>Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -84,7 +83,6 @@ const Page = async ({ params }: { params: { orderid: string } }) => {
                   <TableCell className="uppercase">{item.size}</TableCell>
                   <TableCell>{item.quantity}</TableCell>
                   <TableCell>{item.subtotal}</TableCell>
-                  <TableCell>{item.status}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

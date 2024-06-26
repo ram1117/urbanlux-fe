@@ -51,7 +51,10 @@ const UserProfile = ({ initialUser }: UserProfileProps) => {
             {" "}
             <p className="capitalize font-light">Hi</p>
             <MenubarItem asChild className="w-full justify-center">
-              <Link href={"/profile"} className="py-2 font-medium text-center">
+              <Link
+                href={"/account/profile"}
+                className="py-2 font-medium text-center"
+              >
                 Profile
               </Link>
             </MenubarItem>

@@ -51,6 +51,7 @@ const Page = async () => {
                   <TableHead>Items</TableHead>
                   <TableHead>Total $</TableHead>
                   <TableHead>Payment</TableHead>
+                  <TableHead>Status</TableHead>
                   <TableHead></TableHead>
                 </TableRow>
               </TableHeader>
@@ -78,6 +79,9 @@ const Page = async () => {
                           {order.payment_status}
                         </p>
                       )}
+                    </TableCell>
+                    <TableCell className="capitalize italic">
+                      {order.order_status}
                     </TableCell>
                     <TableCell>
                       <Button variant={"link"}>

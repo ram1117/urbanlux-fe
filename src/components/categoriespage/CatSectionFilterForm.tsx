@@ -69,9 +69,9 @@ const CatSectionFilterForm = ({
       )}
       <ul className="max-h-[50vh] overflow-auto">
         {brands.map((item) => (
-          <li key={item._id} className="flex items-center gap-2 my-2">
+          <li key={item._id} className="flex items-center gap-2 my-4">
             <Checkbox id={item.name} name="brands" value={item._id}></Checkbox>
-            <Label htmlFor={item.name} className="text-lg font-light">
+            <Label htmlFor={item.name} className="font-light">
               {" "}
               {item.name}
             </Label>

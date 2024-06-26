@@ -19,6 +19,7 @@ const validationSchema = z.object({
 });
 
 const AddAddressAction = async (
+  pathname: string,
   formState: IAddAddressFormState,
   formData: FormData,
 ): Promise<IAddAddressFormState> => {
@@ -46,7 +47,7 @@ const AddAddressAction = async (
       return { success: false, errors: { _form: [error.message] } };
     return { success: false, errors: { _form: ["something went wrong"] } };
   }
-  revalidatePath("/checkout");
+  revalidatePath(pathname);
   return { success: true, errors: {} };
 };
 
