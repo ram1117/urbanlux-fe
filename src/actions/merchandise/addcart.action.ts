@@ -16,6 +16,8 @@ const AddCartAction = async (
   merchandise: string,
   image: string,
   name: string,
+  price: number,
+  size: string,
   formState: IAddCartFormState,
   formData: FormData,
 ): Promise<IAddCartFormState> => {
@@ -31,13 +33,14 @@ const AddCartAction = async (
   const prev = cookies().get(CART_KEY);
   if (prev) {
     payload = [...JSON.parse(prev.value)];
-    if (payload.length > CART_LIMIT)
+    if (payload.length >= CART_LIMIT)
       return { errors: { _form: ["reached max cart limit"] } };
   }
-
-  cookies().set({
-    name: CART_KEY,
-    value: JSON.stringify([
+  const existingItemIndex = payload.findIndex(
+    (item) => item.merchandise === merchandise,
+  );
+  if (existingItemIndex === -1) {
+    payload = [
       ...payload,
       {
         merchandise,
@@ -45,8 +48,20 @@ const AddCartAction = async (
         quantity: validation.data.quantity,
         image,
         name,
+        price,
+        size,
       },
-    ]),
+    ];
+  } else {
+    payload[existingItemIndex].inventory = validation.data.inventory;
+    payload[existingItemIndex].quantity = validation.data.quantity;
+    payload[existingItemIndex].price = price;
+    payload[existingItemIndex].size = size;
+  }
+
+  cookies().set({
+    name: CART_KEY,
+    value: JSON.stringify(payload),
     httpOnly: true,
   });
   return { errors: {} };

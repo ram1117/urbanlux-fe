@@ -2,7 +2,7 @@
 
 import { IBrandFilterFormState } from "@/interfaces";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getFilteredBrands } from "@/lib/api/apiurls";
+import { getFilteredItems } from "@/lib/api/apiurls";
 
 const BrandFilterAction = async (
   brandid: string,
@@ -11,9 +11,9 @@ const BrandFilterAction = async (
 ): Promise<IBrandFilterFormState> => {
   const prices = formData.getAll("price[]") as string[];
   const categories = formData.getAll("category");
-
+  const sortby = formData.get("sortby");
   try {
-    let bodyData = {};
+    let bodyData: any = { brandid };
     if (categories.length > 0) {
       bodyData = { ...bodyData, categories };
     }
@@ -24,9 +24,14 @@ const BrandFilterAction = async (
         toprice: parseInt(prices[1]),
       };
     }
+
+    if (sortby) {
+      bodyData = { ...bodyData, sortby };
+    }
+
     const response = await makeApiRequest(
       API_METHODS.POST,
-      getFilteredBrands(brandid),
+      getFilteredItems(),
       bodyData,
     );
     if (!response?.ok) {

@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import BrandFilterAction from "@/actions/brands/brandfilter.action";
 import { useFormState } from "react-dom";
 import ResetFilterButton from "@/atoms/ResetFilterButton";
+import SortFormElement from "@/atoms/SortFormElement";
 
 interface BrandFilterProps {
   setMerchItems: React.Dispatch<React.SetStateAction<IMerchandiseItem[]>>;
@@ -67,16 +68,22 @@ const BrandSectionFilterForm = ({
           <Skeleton className="h-2 bg-slate-200 my-4 w-1/2"></Skeleton>
         </>
       )}
-
-      {categories.map((item) => (
-        <div key={item._id} className="flex items-center gap-2 my-2">
-          <Checkbox id={item.name} name="category" value={item._id}></Checkbox>
-          <Label htmlFor={item.name} className="text-lg font-light">
-            {" "}
-            {item.name}
-          </Label>
-        </div>
-      ))}
+      <ul className="max-h-[50vh] overflow-auto">
+        {categories.map((item) => (
+          <li key={item._id} className="flex items-center gap-2 my-4">
+            <Checkbox
+              id={item.name}
+              name="category"
+              value={item._id}
+            ></Checkbox>
+            <Label htmlFor={item.name} className="font-light">
+              {" "}
+              {item.name}
+            </Label>
+          </li>
+        ))}
+      </ul>
+      <SortFormElement></SortFormElement>
       <div className="grid grid-cols-2 gap-4">
         <FormSubmit text="Filter"></FormSubmit>
         <ResetFilterButton handleReset={handleReset}></ResetFilterButton>

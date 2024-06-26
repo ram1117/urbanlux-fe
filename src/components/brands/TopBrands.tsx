@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import BrandSkeleton from "./BrandSkeleton";
 import { IBrandItem } from "@/interfaces";
 import Link from "next/link";
+import NoData from "@/atoms/NoData";
 
 const TopBrands = async () => {
   const topbrandsResponse = await makeApiRequest(
@@ -11,7 +12,7 @@ const TopBrands = async () => {
     getTopBrands(),
   );
   if (!topbrandsResponse?.ok) {
-    return <></>;
+    return <NoData></NoData>;
   }
   const topbrandsData = await topbrandsResponse.json();
 

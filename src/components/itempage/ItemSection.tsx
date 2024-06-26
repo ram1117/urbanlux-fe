@@ -1,6 +1,6 @@
 "use client";
 
-import { IMerchandiseItem } from "@/interfaces";
+import { ICartItem, IMerchandiseItem } from "@/interfaces";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
 import { getItemClient } from "@/lib/api/apiurls";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import ImageModal from "./ImageModal";
 
 interface ItemSectionProps {
   itemid: string;
+  existingItem: ICartItem | undefined;
 }
 
 const LoadingSkeleton = (
@@ -25,11 +26,11 @@ const LoadingSkeleton = (
   </div>
 );
 
-const ItemSection = ({ itemid }: ItemSectionProps) => {
+const ItemSection = ({ itemid, existingItem }: ItemSectionProps) => {
   const [item, setItem] = useState<IMerchandiseItem | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(existingItem ? existingItem.price : 0);
   useEffect(() => {
     makeApiRequest(API_METHODS.GET, getItemClient(itemid))
       .then((response) => {
@@ -42,7 +43,7 @@ const ItemSection = ({ itemid }: ItemSectionProps) => {
       .then((data) => {
         if (data) {
           setItem(data);
-          setPrice(data.base_price);
+          // setPrice(data.base_price);
           setLoading(false);
         }
       })
@@ -67,9 +68,12 @@ const ItemSection = ({ itemid }: ItemSectionProps) => {
               {item.name}
             </h1>
             <p>{item.description}</p>
-            <p className="my-4">
-              Price: <span className="text-lg font-medium">$ {price}</span>
-            </p>
+            {price !== 0 && (
+              <p className="my-4">
+                Price: <span className="text-lg font-medium">$ {price}</span>
+              </p>
+            )}
+
             <p className="my-4">
               Color:{" "}
               <span className="text-lg font-medium uppercase">
@@ -77,11 +81,10 @@ const ItemSection = ({ itemid }: ItemSectionProps) => {
               </span>
             </p>
             <AddCartForm
-              inventory={item.inventory}
+              item={item}
               setPrice={setPrice}
-              itemid={item._id}
-              name={item.name}
-              image={item.thumbnail}
+              price={price}
+              existingItem={existingItem}
             ></AddCartForm>
             <FeaturesAccordion items={item.features}></FeaturesAccordion>
           </div>

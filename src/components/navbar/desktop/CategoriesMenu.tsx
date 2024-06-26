@@ -8,15 +8,10 @@ const CategoriesMenu = async () => {
   const response = await makeApiRequest(API_METHODS.GET, getCategories());
   if (!response?.ok) {
     return (
-      <MenubarItem className="text-dark" asChild>
-        <li className="">
-          <Link
-            href={"/categories"}
-            className="text-center w-full p-2 text-lg font-semibold"
-          >
-            All Categories
-          </Link>
-        </li>
+      <MenubarItem className="text-dark text-lg font-semibold" asChild>
+        <Link href={"/categories"} className="text-center w-full p-2 ">
+          All Categories
+        </Link>
       </MenubarItem>
     );
   }

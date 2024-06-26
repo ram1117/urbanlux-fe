@@ -1,7 +1,7 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FB_APIKEY,
   authDomain: process.env.NEXT_PUBLIC_FB_AUTHDOMAIN,
   projectId: process.env.NEXT_PUBLIC_FB_PROJECTID,

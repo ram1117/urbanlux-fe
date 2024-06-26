@@ -3,6 +3,7 @@ import Link from "next/link";
 import IconCart from "@public/icons/icon-cart.svg";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -52,7 +53,9 @@ const Cart = () => {
           </ul>
           <div className="flex items-center justify-center my-8">
             <Button disabled={items.length === 0}>
-              <Link href={`/checkout`}>Checkout</Link>
+              <SheetClose asChild>
+                <Link href={`/checkout`}>Checkout</Link>
+              </SheetClose>
             </Button>
           </div>
         </div>
