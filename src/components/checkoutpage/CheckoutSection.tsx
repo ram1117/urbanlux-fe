@@ -80,8 +80,10 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
           ></Address>
         </CardContent>
       </Card>
-      <div className="p-4 flex justify-end">
-        <Button onClick={handleClick}>Place Order</Button>
+      <div className="p-4 flex justify-center">
+        <Button onClick={handleClick} className="px-6 tracking-widest">
+          Place Order
+        </Button>
       </div>
       {errors?.cartitems && (
         <p className="text-sm text-red-800">{errors.cartitems}</p>

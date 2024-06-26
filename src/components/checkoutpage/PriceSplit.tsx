@@ -10,7 +10,6 @@ import {
 } from "../ui/table";
 import ImageWrapper from "@/atoms/ImageWrapper";
 import Link from "next/link";
-import { CHARGES } from "@/lib/constants";
 
 interface PriceSplitProps {
   cartitems: ICartItem[];
@@ -21,11 +20,8 @@ const PriceSplit = ({ cartitems }: PriceSplitProps) => {
   const itemTotal = cartitems
     .map((item) => item.price * parseInt(item.quantity))
     .reduce((a, b) => a + b);
-  const tax = Math.ceil(itemTotal * CHARGES.TAX);
 
   total += itemTotal;
-  total += CHARGES.SHIPPING;
-  total += tax;
 
   return (
     <Table>
@@ -62,21 +58,6 @@ const PriceSplit = ({ cartitems }: PriceSplitProps) => {
             <TableCell>{item.price * parseInt(item.quantity)}</TableCell>
           </TableRow>
         ))}
-        <TableRow>
-          <TableCell></TableCell>
-          <TableCell className="" colSpan={3}>
-            Shipping
-          </TableCell>
-          <TableCell>{CHARGES.SHIPPING}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell></TableCell>
-          <TableCell className="" colSpan={2}>
-            Tax
-          </TableCell>
-          <TableCell>{CHARGES.TAX * 100}%</TableCell>
-          <TableCell>{tax}</TableCell>
-        </TableRow>
       </TableBody>
       <TableFooter>
         <TableRow>

@@ -18,3 +18,16 @@ export enum ADDRESS_TYPE {
   DELIVERY = "delivery",
   BILLING = "billing",
 }
+
+export enum PAYMENT_STATUS {
+  PENDING = "pending",
+  CONFIRMATION = "waiting confirmation",
+  COMPLETE = "complete",
+}
+
+export enum ORDER_STATUS {
+  PLACED = "placed",
+  FULFILLED = "fulfilled",
+  CANCELLED = "cancelled",
+  NOTFULFILLED = "not fulfilled",
+}

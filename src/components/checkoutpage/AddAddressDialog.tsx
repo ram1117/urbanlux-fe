@@ -21,7 +21,9 @@ const AddAddressDialog = ({ label = "Add Address" }: AddAddressDialogProps) => {
   return (
     <Dialog onOpenChange={setOpen} open={open}>
       <DialogTrigger asChild>
-        <Button className="w-max">{label}</Button>
+        <Button className="w-max" variant={"outline"}>
+          {label}
+        </Button>
       </DialogTrigger>
 
       <DialogContent className="max-h-[90vh] overflow-auto">

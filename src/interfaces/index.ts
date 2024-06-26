@@ -7,8 +7,8 @@ export interface IBrandItem {
   brand_code: string;
   logo: string;
   create_store: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IFeatureItem {
@@ -53,8 +53,8 @@ export interface IInventory {
   size: string;
   stock: number;
   price: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IMerchandiseItem {
@@ -150,14 +150,17 @@ export interface IAddAddressFormState {
 export interface IOrderItem {
   _id: string;
   merchandise: string;
+  merchandise_name: string;
+  merchandise_thumbnail: string;
   quantity: number;
   size: string;
   subtotal: number;
   status: string;
   user: string;
   inventory: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
+  cancelled: boolean;
 }
 
 export interface IOrder {
@@ -167,11 +170,21 @@ export interface IOrder {
   address: IAddressItem;
   payment_status: string;
   user: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
+  cancelled: boolean;
 }
 
 export interface IPaymentSummary {
   secret: string;
   order: IOrder;
+}
+
+export interface ICancelOrderFormState {
+  success: boolean;
+  message?: string;
+  errors: {
+    _form?: string[];
+    orderitems?: string[];
+  };
 }

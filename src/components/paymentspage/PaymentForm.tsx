@@ -73,6 +73,7 @@ const PaymentForm = ({ clientSecret }: PaymentFormProps) => {
         disabled={loading || !stripe || !elements || succeeded}
         id="submit"
         className="my-4 min-w-28"
+        type="submit"
       >
         <span id="button-text">
           {loading ? <LoadingSpinner></LoadingSpinner> : "Pay now"}
