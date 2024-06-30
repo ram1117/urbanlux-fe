@@ -36,7 +36,7 @@ const Page = async ({ params }: { params: { orderid: string } }) => {
   );
   if (!response?.ok) return <NoData></NoData>;
   const data: IOrder = await response.json();
-
+  console.log(data);
   return (
     <main className="min-h-screen max-w-[1440px] mx-auto">
       <Card className="mt-10 lg:mt-20 w-11/12 lg:w-4/5 max-w-[1240px] mx-auto">
