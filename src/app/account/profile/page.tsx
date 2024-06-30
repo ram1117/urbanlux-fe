@@ -17,8 +17,6 @@ const Page = async () => {
   if (!response?.ok) return <NoData></NoData>;
   const data = await response.json();
 
-  console.log(data);
-
   return (
     <main className="min-h-screen max-w-[1440px] mx-auto">
       <section className="my-10 lg:my-20">

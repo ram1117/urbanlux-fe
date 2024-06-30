@@ -9,11 +9,9 @@ export const getBrandsCategories = () =>
 export const getCategories = () => `${MERCHANDISE_BASE_URL}/category`;
 export const getTopBrands = () => `${MERCHANDISE_BASE_URL}/topbrands`;
 export const getAllBrands = () => `${MERCHANDISE_BASE_URL}/brands`;
-export const postCreateUser = () => `${AUTH_BASE_URL}/auth/signup`;
 export const getLatest = () => `${MERCHANDISE_BASE_URL}/latest`;
 export const getFilteredItems = () => `${MERCHANDISE_BASE_URL}/filteritems`;
 export const getInventoryValues = () => `${MERCHANDISE_BASE_URL}/inventory`;
-
 export const getCategoriesClient = () =>
   `${MERCHANDISE_BASE_URL_CLIENT}/category`;
 export const getBrandsClient = () => `${MERCHANDISE_BASE_URL_CLIENT}/brands`;
@@ -24,6 +22,7 @@ export const getCategoryItemsClient = (id: string) =>
 export const getItemClient = (id: string) =>
   `${MERCHANDISE_BASE_URL_CLIENT}/item/${id}`;
 
+export const postCreateUser = () => `${AUTH_BASE_URL}/auth/signup`;
 export const getAddresses = () => `${ORDERING_BASE_URL_CLIENT}/address`;
 export const addAddress = () => `${ORDERING_BASE_URL_CLIENT}/address`;
 

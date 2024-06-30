@@ -156,10 +156,10 @@ export interface IOrderItem {
   size: string;
   subtotal: number;
   user: string;
+  available: boolean;
   inventory: string;
   createdAt: string;
   updatedAt: string;
-  cancelled: boolean;
 }
 
 export interface IOrder {
@@ -169,7 +169,7 @@ export interface IOrder {
   address: IAddressItem;
   payment_status: string;
   order_status: string;
-  user: string;
+  comments: string[];
   createdAt: string;
   updatedAt: string;
   cancelled: boolean;

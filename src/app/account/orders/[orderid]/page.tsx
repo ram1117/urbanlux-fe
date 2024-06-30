@@ -39,7 +39,7 @@ const Page = async ({ params }: { params: { orderid: string } }) => {
 
   return (
     <main className="min-h-screen max-w-[1440px] mx-auto">
-      <Card className="my-10 lg:my-20">
+      <Card className="mt-10 lg:mt-20 w-11/12 lg:w-4/5 max-w-[1240px] mx-auto">
         {data.cancelled && (
           <p className="w-max border border-red-800 text-red-800 m-2 p-1 font-medium">
             Cancelled
@@ -89,10 +89,16 @@ const Page = async ({ params }: { params: { orderid: string } }) => {
             <TableFooter className="my-4">
               <TableRow>
                 <TableCell>{formatDate(data.updatedAt)}</TableCell>
-                <TableCell colSpan={2}>
+                <TableCell colSpan={1}>
                   <div className="text-center">
                     <p className="underline">Total</p>
                     <p>${data.total}</p>
+                  </div>
+                </TableCell>
+                <TableCell colSpan={1}>
+                  <div className="text-center">
+                    <p className="underline">Order Status</p>
+                    <p>{data.order_status}</p>
                   </div>
                 </TableCell>
                 <TableCell colSpan={2}>
@@ -113,6 +119,18 @@ const Page = async ({ params }: { params: { orderid: string } }) => {
               </TableRow>
             </TableFooter>
           </Table>
+        </CardContent>
+      </Card>
+      <Card className="w-11/12 lg:w-4/5 max-w-[1240px] mx-auto">
+        <CardHeader>
+          <CardTitle>Comments</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="ps-6 list-disc">
+            {data.comments.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </CardContent>
       </Card>
     </main>

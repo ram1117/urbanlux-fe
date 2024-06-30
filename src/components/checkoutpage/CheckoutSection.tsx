@@ -7,6 +7,8 @@ import PriceSplit from "./PriceSplit";
 import Address from "./Address";
 import { Button } from "../ui/button";
 import PlaceOrderAction from "@/actions/ordering/placeorder.action";
+import LoadingSpinner from "../ui/loadingspinner";
+import { useRouter } from "next/navigation";
 
 interface CheckoutSectionProps {
   cartitems: ICartItem[];
@@ -23,7 +25,9 @@ interface IErrorState {
 }
 
 const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
+  const router = useRouter();
   const [errors, setErrors] = useState<IErrorState | undefined>();
+  const [loading, setLoading] = useState(false);
   const [address, setAddress] = useState<IFormAddressItem>({
     delivery: "",
     billing: "",
@@ -38,14 +42,16 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
         ...prev,
         address: { ...prev?.address, delivery: "select delivery address" },
       }));
+      return;
     }
     if (address.billing.length === 0) {
       setErrors((prev) => ({
         ...prev,
         address: { ...prev?.address, billing: "select billing address" },
       }));
+      return;
     }
-
+    setLoading(true);
     const response = await PlaceOrderAction(
       cartitems,
       address.delivery,
@@ -54,6 +60,10 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
 
     if (response?.error) {
       setErrors((prev) => ({ ...prev, error: response.message }));
+    }
+    if (response.success) {
+      setLoading(false);
+      router.push(`/payments/${response.data._id}`);
     }
   };
 
@@ -81,13 +91,18 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
         </CardContent>
       </Card>
       <div className="p-4 flex justify-center">
-        <Button onClick={handleClick} className="px-6 tracking-widest">
-          Place Order
+        <Button
+          onClick={handleClick}
+          className="px-6 tracking-widest"
+          disabled={loading}
+        >
+          {loading ? <LoadingSpinner></LoadingSpinner> : "Place Order"}
         </Button>
       </div>
       {errors?.cartitems && (
         <p className="text-sm text-red-800">{errors.cartitems}</p>
       )}
+      {errors?.error && <p className="text-sm text-red-800">{errors.error}</p>}
     </section>
   );
 };

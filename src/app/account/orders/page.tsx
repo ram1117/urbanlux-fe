@@ -32,7 +32,6 @@ const Page = async () => {
     await currentUser?.getIdToken(),
   );
   if (!response?.ok) {
-    console.log(await response?.json());
     return <NoData></NoData>;
   }
   const data: IOrder[] = await response.json();
@@ -84,7 +83,7 @@ const Page = async () => {
                       {order.order_status}
                     </TableCell>
                     <TableCell>
-                      <Button variant={"link"}>
+                      <Button variant={"default"}>
                         <Link href={`/account/orders/${order._id}`}>View</Link>
                       </Button>
                     </TableCell>

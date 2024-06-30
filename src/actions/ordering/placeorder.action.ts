@@ -6,7 +6,6 @@ import { placeOrder } from "@/lib/api/apiurls";
 import { CART_KEY } from "@/lib/constants";
 import { getAuthenticatedAppForUser } from "@/lib/firebase/firebase.server";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 const PlaceOrderAction = async (
   cartItems: ICartItem[],
@@ -21,7 +20,6 @@ const PlaceOrderAction = async (
 
   const { currentUser } = await getAuthenticatedAppForUser();
   const bodyData = { items, delivery_address, billing_address };
-  let orderData: any;
   try {
     const response = await makeApiRequest(
       API_METHODS.POST,
@@ -34,13 +32,13 @@ const PlaceOrderAction = async (
       const error = await response?.json();
       return { error: true, message: error.message };
     }
-    orderData = await response.json();
+    const orderData = await response.json();
+    cookies().delete(CART_KEY);
+    return { error: false, success: true, data: orderData };
   } catch (error) {
     if (error instanceof Error) return { error: true, message: error.message };
     return { error: true, message: "Something went wrong" };
   }
-  cookies().delete(CART_KEY);
-  redirect(`/payments/${orderData._id}`);
 };
 
 export default PlaceOrderAction;
