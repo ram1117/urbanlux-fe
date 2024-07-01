@@ -19,7 +19,6 @@ import {
   TableBody,
   TableCell,
   TableRow,
-  TableFooter,
 } from "@/components/ui/table";
 import { useFetchDataClient } from "@/hooks/usersession.hooks";
 import { IOrder } from "@/interfaces";
@@ -45,7 +44,7 @@ const Page = ({ params }: { params: { orderid: string } }) => {
       {loading && <LogoLoadingSkeleton></LogoLoadingSkeleton>}
       {data && (
         <>
-          <Card className="mt-10 lg:mt-20 w-11/12 lg:w-4/5 max-w-[1240px] mx-auto">
+          <Card className="mt-10 lg:mt-20 w-11/12 lg:w-4/5 max-w-[1240px] mx-auto my-4">
             {data.cancelled && (
               <p className="w-max border border-red-800 text-red-800 m-2 p-1 font-medium">
                 Cancelled
@@ -54,6 +53,7 @@ const Page = ({ params }: { params: { orderid: string } }) => {
             <CardHeader>
               <CardTitle>Order Details</CardTitle>
               <CardDescription>Order id - {data._id}</CardDescription>
+              <p>{formatDate(data.updatedAt)}</p>
             </CardHeader>
             <CardContent
               className={`${data.cancelled ? "opacity-40" : "opacity-100"}`}
@@ -92,39 +92,37 @@ const Page = ({ params }: { params: { orderid: string } }) => {
                     </TableRow>
                   ))}
                 </TableBody>
-                <TableFooter className="my-4">
-                  <TableRow>
-                    <TableCell>{formatDate(data.updatedAt)}</TableCell>
-                    <TableCell colSpan={1}>
-                      <div className="text-center">
-                        <p className="underline">Total</p>
-                        <p>${data.total}</p>
-                      </div>
-                    </TableCell>
-                    <TableCell colSpan={1}>
-                      <div className="text-center">
-                        <p className="underline">Order Status</p>
-                        <p>{data.order_status}</p>
-                      </div>
-                    </TableCell>
-                    <TableCell colSpan={2}>
-                      {data.payment_status === PAYMENT_STATUS.PENDING ? (
-                        <Button>
-                          <Link href={`/payments/${data._id}`}>Pay Now</Link>
-                        </Button>
-                      ) : (
-                        <div className="text-center">
-                          <p className="underline">Payment Status</p>
-                          <p className="capitalize">{data.payment_status}</p>
-                        </div>
-                      )}
-                    </TableCell>
-                    <TableCell colSpan={1}>
-                      <OrderCancelDialog order={data}></OrderCancelDialog>
-                    </TableCell>
-                  </TableRow>
-                </TableFooter>
               </Table>
+              <div className="flex flex-wrap gap-4 justify-between items-center text-base mt-4 py-4 px-2 border-t capitalize">
+                <div className="text-center">
+                  <p className="underline text-sm mb-1">Total</p>
+                  <p>${data.total}</p>
+                </div>
+                <div className="text-center">
+                  <p className="underline text-sm mb-1">Order Status</p>
+                  <p>{data.order_status}</p>
+                </div>
+                {data.payment_status === PAYMENT_STATUS.PENDING ? (
+                  <Button>
+                    <Link href={`/payments/${data._id}`}>Pay Now</Link>
+                  </Button>
+                ) : (
+                  <div className="text-center">
+                    <p className="underline text-sm mb-1">Payment Status</p>
+                    <p className="capitalize">{data.payment_status}</p>
+                  </div>
+                )}
+                <div className="flex gap-2">
+                  <OrderCancelDialog order={data}></OrderCancelDialog>
+                  {data.tracking_id && (
+                    <Button>
+                      <Link href={"/"} target="_blank">
+                        Track
+                      </Link>
+                    </Button>
+                  )}
+                </div>
+              </div>
             </CardContent>
           </Card>
           <Card className="w-11/12 lg:w-4/5 max-w-[1240px] mx-auto">

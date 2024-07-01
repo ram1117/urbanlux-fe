@@ -169,6 +169,7 @@ export interface IOrder {
   address: IAddressItem;
   payment_status: string;
   order_status: string;
+  tracking_id: string;
   comments: string[];
   createdAt: string;
   updatedAt: string;
