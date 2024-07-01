@@ -103,6 +103,12 @@ export interface ICartItem {
   size: string;
 }
 
+export interface ISavedItem {
+  id: string;
+  name: string;
+  thumbnail: string;
+}
+
 export interface IPlaceOrderItem {
   inventory: string;
   quantity: number;

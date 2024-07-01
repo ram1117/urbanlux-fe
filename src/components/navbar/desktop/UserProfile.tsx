@@ -11,6 +11,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useUserSession } from "@/hooks/usersession.hooks";
 import { signOutUser } from "@/lib/firebase/firebase.auth";
 import Link from "next/link";
+import ImageWrapper from "@/atoms/ImageWrapper";
+import IconUser from "@public/icons/iconuser.svg";
 
 interface UserProfileProps {
   initialUser: any;
@@ -26,15 +28,20 @@ const UserProfile = ({ initialUser }: UserProfileProps) => {
 
   return (
     <MenubarMenu>
-      <MenubarTrigger className="text-xs md:text-base border border-light text-light focus:bg-dark focus:text-light data-[state=open]:bg-light data-[state=open]:text-dark">
-        Account
+      <MenubarTrigger className="focus:bg-dark focus:text-light data-[state=open]:bg-dark data-[state=open]:text-light px-0">
+        <ImageWrapper
+          src={IconUser}
+          alt="Bookmark Icon"
+          imageSize="h-6 w-6"
+          sizes="10vw"
+        />
       </MenubarTrigger>
       {loading && (
-        <MenubarMenu>
+        <MenubarContent>
           <Skeleton className="h-2 w-full"></Skeleton>
           <Skeleton className="h-2 w-full"></Skeleton>
           <Skeleton className="h-2 w-full"></Skeleton>
-        </MenubarMenu>
+        </MenubarContent>
       )}
       {!user && !loading && (
         <MenubarContent className="flex flex-col items-center py-4">

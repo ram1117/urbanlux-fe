@@ -1,6 +1,6 @@
 "use client";
 
-import { ICartItem, IMerchandiseItem } from "@/interfaces";
+import { ICartItem, IMerchandiseItem, ISavedItem } from "@/interfaces";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
 import { getItem } from "@/lib/api/apiurls";
 import { useEffect, useState } from "react";
@@ -9,10 +9,12 @@ import FeaturesAccordion from "./FeaturesAccordion";
 import AddCartForm from "./AddCartForm";
 import ItemMobileCarousel from "./ItemMobileCarousel";
 import ImageModal from "./ImageModal";
+import SaveItemForm from "./SaveItemForm";
 
 interface ItemSectionProps {
   itemid: string;
   existingItem: ICartItem | undefined;
+  savedItem: ISavedItem | undefined;
 }
 
 const LoadingSkeleton = (
@@ -26,7 +28,7 @@ const LoadingSkeleton = (
   </div>
 );
 
-const ItemSection = ({ itemid, existingItem }: ItemSectionProps) => {
+const ItemSection = ({ itemid, existingItem, savedItem }: ItemSectionProps) => {
   const [item, setItem] = useState<IMerchandiseItem | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -43,7 +45,7 @@ const ItemSection = ({ itemid, existingItem }: ItemSectionProps) => {
       .then((data) => {
         if (data) {
           setItem(data);
-          // setPrice(data.base_price);
+          setPrice(data.base_price);
           setLoading(false);
         }
       })
@@ -63,10 +65,21 @@ const ItemSection = ({ itemid, existingItem }: ItemSectionProps) => {
             ))}
           </div>
           <div className="w-full lg:w-1/2 flex flex-col">
-            <h2 className="">{item.brand.name}</h2>
-            <h1 className="text-2xl font-semibold font-cantarell my-2">
-              {item.name}
-            </h1>
+            <div className="flex gap-4 items-center justify-between">
+              <div>
+                <h2 className="">{item.brand.name}</h2>
+                <h1 className="text-xl lg:text-2xl font-semibold font-cantarell my-1">
+                  {item.name}
+                </h1>
+              </div>
+              <SaveItemForm
+                saved={savedItem ? true : false}
+                id={item._id}
+                name={item.name}
+                thumbnail={item.thumbnail}
+              ></SaveItemForm>
+            </div>
+
             <p>{item.description}</p>
             {price !== 0 && (
               <p className="my-4">

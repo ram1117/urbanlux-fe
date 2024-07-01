@@ -31,15 +31,12 @@ const Cart = () => {
           <ImageWrapper
             src={IconCart}
             alt="Cart Icon"
-            imageSize="h-6 w-6 lg:h-8 lg:w-8"
+            imageSize="h-6 w-6"
             sizes="10vw"
           />
-          <p className="absolute right-1/2 -top-2 text-xs rounded-full  text-light font-bold">
-            {items.length}
-          </p>
         </div>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="z-[999]">
         <SheetHeader className="border-b py-2 mb-4 space-y-0">
           <SheetTitle>Cart</SheetTitle>
           <SheetDescription>Your cart items</SheetDescription>

@@ -45,11 +45,6 @@ const Page = ({ params }: { params: { orderid: string } }) => {
       {data && (
         <>
           <Card className="mt-10 lg:mt-20 w-11/12 lg:w-4/5 max-w-[1240px] mx-auto my-4">
-            {data.cancelled && (
-              <p className="w-max border border-red-800 text-red-800 m-2 p-1 font-medium">
-                Cancelled
-              </p>
-            )}
             <CardHeader>
               <CardTitle>Order Details</CardTitle>
               <CardDescription>Order id - {data._id}</CardDescription>

@@ -3,6 +3,8 @@ import DesktopMenu from "./desktop/DesktopMenu";
 import Cart from "./cart/Cart";
 import UserProfile from "./desktop/UserProfile";
 import { Menubar } from "../ui/menubar";
+import ImageWrapper from "@/atoms/ImageWrapper";
+import IconBookmark from "@public/icons/iconbookmark.svg";
 
 interface NavbarProps {
   initialUser: any;
@@ -18,11 +20,19 @@ const Navbar = ({ initialUser }: NavbarProps) => {
         </div>
       </Link>
 
-      <div className="flex gap-2 items-center">
-        <Menubar className="z-[950] rounded-none bg-transparent border-none">
+      <div className="flex gap-3 items-center">
+        <Menubar className="z-[950] gap-3 rounded-none bg-transparent border-none">
           <DesktopMenu />
           <UserProfile initialUser={initialUser}></UserProfile>
         </Menubar>
+        <Link href={"/saved"}>
+          <ImageWrapper
+            src={IconBookmark}
+            alt="Bookmark Icon"
+            imageSize="h-6 w-6"
+            sizes="10vw"
+          />
+        </Link>
         <Cart />
       </div>
     </nav>
