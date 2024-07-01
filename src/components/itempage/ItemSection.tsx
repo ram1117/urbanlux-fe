@@ -2,7 +2,7 @@
 
 import { ICartItem, IMerchandiseItem } from "@/interfaces";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getItemClient } from "@/lib/api/apiurls";
+import { getItem } from "@/lib/api/apiurls";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import FeaturesAccordion from "./FeaturesAccordion";
@@ -32,7 +32,7 @@ const ItemSection = ({ itemid, existingItem }: ItemSectionProps) => {
   const [error, setError] = useState("");
   const [price, setPrice] = useState(existingItem ? existingItem.price : 0);
   useEffect(() => {
-    makeApiRequest(API_METHODS.GET, getItemClient(itemid))
+    makeApiRequest(API_METHODS.GET, getItem(itemid))
       .then((response) => {
         if (!response?.ok) {
           response?.json().then((error) => setError(error.message));

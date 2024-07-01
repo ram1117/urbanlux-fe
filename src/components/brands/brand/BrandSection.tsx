@@ -4,7 +4,7 @@ import { IMerchandiseItem } from "@/interfaces";
 import { useEffect, useState } from "react";
 import MerchContainer from "@/atoms/MerchContainter";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getBrandItemsClient } from "@/lib/api/apiurls";
+import { getBrandItems } from "@/lib/api/apiurls";
 import BrandSectionFilter from "../BrandSectionFilter";
 
 interface BrandSectionProps {
@@ -17,7 +17,7 @@ const BrandSection = ({ brandid }: BrandSectionProps) => {
   const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
-    makeApiRequest(API_METHODS.GET, getBrandItemsClient(brandid))
+    makeApiRequest(API_METHODS.GET, getBrandItems(brandid))
       .then((response) => response?.json())
       .then((data) => setMerchItems(data))
       .catch((error) => setError(error.message));

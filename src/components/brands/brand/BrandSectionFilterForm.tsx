@@ -11,7 +11,7 @@ import {
 } from "@/interfaces";
 import { Skeleton } from "@/components/ui/skeleton";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getBrandItemsClient, getCategoriesClient } from "@/lib/api/apiurls";
+import { getBrandItems, getCategories } from "@/lib/api/apiurls";
 import { useEffect, useState } from "react";
 import BrandFilterAction from "@/actions/brands/brandfilter.action";
 import { useFormState } from "react-dom";
@@ -36,7 +36,7 @@ const BrandSectionFilterForm = ({
   const [categories, setCategories] = useState<ICategory[]>([]);
 
   useEffect(() => {
-    makeApiRequest(API_METHODS.GET, getCategoriesClient())
+    makeApiRequest(API_METHODS.GET, getCategories())
       .then((response) => response?.json())
       .then((data) => setCategories(data));
   }, []);
@@ -51,7 +51,7 @@ const BrandSectionFilterForm = ({
   }, [formState, setMerchItems]);
 
   const handleReset = () => {
-    makeApiRequest(API_METHODS.GET, getBrandItemsClient(brandid))
+    makeApiRequest(API_METHODS.GET, getBrandItems(brandid))
       .then((response) => response?.json())
       .then((data) => setMerchItems(data));
   };

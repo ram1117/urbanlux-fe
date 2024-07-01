@@ -3,7 +3,7 @@
 import MerchContainer from "@/atoms/MerchContainter";
 import { IMerchandiseItem } from "@/interfaces";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getCategoryItemsClient } from "@/lib/api/apiurls";
+import { getCategoryItems } from "@/lib/api/apiurls";
 import { useEffect, useState } from "react";
 import CategoriesSectionFilter from "./CategoriesSectionFilter";
 
@@ -17,7 +17,7 @@ const CategoriesSection = ({ categoryid }: CategoriesSectionProps) => {
   const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
-    makeApiRequest(API_METHODS.GET, getCategoryItemsClient(categoryid))
+    makeApiRequest(API_METHODS.GET, getCategoryItems(categoryid))
       .then((response) => {
         if (!response?.ok) {
           response?.json().then((error) => setError(error.message));
