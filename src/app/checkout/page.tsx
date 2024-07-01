@@ -1,37 +1,17 @@
-import NoData from "@/atoms/NoData";
 import CheckoutSection from "@/components/checkoutpage/CheckoutSection";
 import { Button } from "@/components/ui/button";
-import { IAddressItems, ICartItem } from "@/interfaces";
-import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getAddresses } from "@/lib/api/apiurls";
+import { ICartItem } from "@/interfaces";
 import { CART_KEY } from "@/lib/constants";
-import {
-  getAuthenticatedAppForUser,
-  redirectToLogin,
-} from "@/lib/firebase/firebase.server";
+
 import { cookies } from "next/headers";
 import Link from "next/link";
 
 const Page = async () => {
-  await redirectToLogin();
-  const { currentUser } = await getAuthenticatedAppForUser();
   const itemcookies = cookies().get(CART_KEY);
   let items: ICartItem[] = [];
   if (itemcookies) {
     items = [...JSON.parse(itemcookies.value)];
   }
-
-  const addressResponse = await makeApiRequest(
-    API_METHODS.GET,
-    getAddresses(),
-    null,
-    await currentUser?.getIdToken(),
-  );
-
-  if (!addressResponse?.ok) {
-    return <NoData></NoData>;
-  }
-  const addressData: IAddressItems = await addressResponse?.json();
 
   const hasItems = items.length !== 0;
   return (
@@ -49,12 +29,7 @@ const Page = async () => {
           </div>
         </section>
       )}
-      {hasItems && (
-        <CheckoutSection
-          cartitems={items}
-          addressData={addressData}
-        ></CheckoutSection>
-      )}
+      {hasItems && <CheckoutSection cartitems={items}></CheckoutSection>}
     </main>
   );
 };

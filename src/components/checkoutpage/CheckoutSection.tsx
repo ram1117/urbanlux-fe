@@ -1,6 +1,6 @@
 "use client";
 
-import { IFormAddressItem, IAddressItems, ICartItem } from "@/interfaces";
+import { IFormAddressItem, ICartItem } from "@/interfaces";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { useState } from "react";
 import PriceSplit from "./PriceSplit";
@@ -12,7 +12,6 @@ import { useRouter } from "next/navigation";
 
 interface CheckoutSectionProps {
   cartitems: ICartItem[];
-  addressData: IAddressItems;
 }
 
 interface IErrorState {
@@ -24,10 +23,10 @@ interface IErrorState {
   error?: string;
 }
 
-const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
+const CheckoutSection = ({ cartitems }: CheckoutSectionProps) => {
   const router = useRouter();
   const [errors, setErrors] = useState<IErrorState | undefined>();
-  const [loading, setLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(true);
   const [address, setAddress] = useState<IFormAddressItem>({
     delivery: "",
     billing: "",
@@ -51,7 +50,7 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
       }));
       return;
     }
-    setLoading(true);
+    setDisableButton(true);
     const response = await PlaceOrderAction(
       cartitems,
       address.delivery,
@@ -62,7 +61,6 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
       setErrors((prev) => ({ ...prev, error: response.message }));
     }
     if (response.success) {
-      setLoading(false);
       router.push(`/payments/${response.data._id}`);
     }
   };
@@ -85,7 +83,7 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
           <Address
             setAddress={setAddress}
             selectedAddress={address}
-            addressList={addressData}
+            disableButton={setDisableButton}
             errors={errors?.address}
           ></Address>
         </CardContent>
@@ -94,9 +92,9 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
         <Button
           onClick={handleClick}
           className="px-6 tracking-widest"
-          disabled={loading}
+          disabled={disableButton}
         >
-          {loading ? <LoadingSpinner></LoadingSpinner> : "Place Order"}
+          {disableButton ? <LoadingSpinner></LoadingSpinner> : "Place Order"}
         </Button>
       </div>
       {errors?.cartitems && (

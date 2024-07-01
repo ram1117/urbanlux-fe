@@ -16,6 +16,38 @@ export const useCurrentUser = () => {
   return token;
 };
 
+export const useFetchDataPublic = (
+  method: API_METHODS,
+  url: string,
+  bodydata: any,
+) => {
+  const [error, setError] = useState<string>();
+  const [data, setData] = useState<any>();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makeApiRequest(method, url, bodydata);
+        if (!response?.ok) {
+          const error = await response?.json();
+          setError(error.message);
+        }
+        const apidata = await response?.json();
+        setData(apidata);
+      } catch (error) {
+        if (error instanceof Error) setError(error.message);
+        setError("something went wrong");
+      }
+    };
+
+    fetchData();
+    setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return { data, loading, error };
+};
+
 export const useFetchDataClient = (
   method: API_METHODS,
   url: string,
@@ -27,6 +59,10 @@ export const useFetchDataClient = (
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged((authUser) => {
+      if (!authUser) {
+        setError("Please sign in");
+        setLoading(false);
+      }
       authUser?.getIdToken().then(async (token) => {
         if (token) {
           try {
@@ -49,7 +85,8 @@ export const useFetchDataClient = (
     });
 
     return () => unsubscribe();
-  }, [bodydata, method, url]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { data, loading, error };
 };

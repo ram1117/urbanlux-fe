@@ -37,11 +37,7 @@ const Page = ({ params }: { params: { orderid: string } }) => {
   ) as { data: IOrder; error: string; loading: boolean };
 
   if (error) {
-    return (
-      <NoData>
-        <p className="text-sm text-red-800">{error}</p>
-      </NoData>
-    );
+    return <NoData>{error}</NoData>;
   }
 
   return (

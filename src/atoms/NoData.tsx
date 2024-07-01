@@ -5,11 +5,11 @@ interface NoDataProps {
 
 const NoData = ({ textcolor = "text-dark", children = <></> }: NoDataProps) => {
   return (
-    <div className="min-h-[50vh] flex items-center justify-center">
+    <div className="min-h-[50vh] flex flex-col gap-4 items-center justify-center">
       <h2 className={`text-2xl ${textcolor}`}>
         It&apos;s us. Unable to fetch data for this section
       </h2>
-      {children}
+      <p className="text-xl text-red-800 font-bold">{children}</p>
     </div>
   );
 };

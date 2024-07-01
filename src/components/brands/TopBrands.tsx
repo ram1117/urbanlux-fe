@@ -12,7 +12,8 @@ const TopBrands = async () => {
     getTopBrands(),
   );
   if (!topbrandsResponse?.ok) {
-    return <NoData></NoData>;
+    const error = await topbrandsResponse?.json();
+    return <NoData>{error}</NoData>;
   }
   const topbrandsData = await topbrandsResponse.json();
 
