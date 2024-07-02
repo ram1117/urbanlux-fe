@@ -34,6 +34,9 @@ const Cart = () => {
             imageSize="h-6 w-6"
             sizes="10vw"
           />
+          {hasItems && (
+            <span className="h-2 w-2 rounded-full bg-light absolute -top-2 right-1/2"></span>
+          )}
         </div>
       </SheetTrigger>
       <SheetContent className="z-[999]">
