@@ -16,7 +16,6 @@ export const makeApiRequest = async (
       return await fetch(url, {
         method,
         headers: { "Content-type": "application/json", Authorization: idToken },
-        cache: "no-cache",
       });
 
     return await fetch(url, {

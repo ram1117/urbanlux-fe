@@ -30,7 +30,7 @@ const MerchandiseItem = ({ item }: ItemProps) => {
           setCurrentIndex((prev) =>
             prev === images.length - 1 ? 0 : prev + 1,
           ),
-        600,
+        1000,
       );
     }
     return () => clearInterval(timerRef.current);

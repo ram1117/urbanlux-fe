@@ -21,7 +21,10 @@ const Page = async ({ params }: { params: { orderid: string } }) => {
     null,
     await currentUser?.getIdToken(),
   );
-  if (!response?.ok) return <NoData></NoData>;
+  if (!response?.ok) {
+    const error = await response?.json();
+    return <NoData>{error}</NoData>;
+  }
 
   const data: IPaymentSummary = await response.json();
 

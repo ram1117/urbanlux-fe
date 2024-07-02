@@ -9,7 +9,7 @@ import { Skeleton } from "../ui/skeleton";
 import Slider from "../ui/slider";
 import { useEffect, useState } from "react";
 import { API_METHODS, makeApiRequest } from "@/lib/api/apiservice";
-import { getBrandsClient, getCategoryItemsClient } from "@/lib/api/apiurls";
+import { getAllBrands, getCategoryItems } from "@/lib/api/apiurls";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import FormSubmit from "@/atoms/FormSubmit";
@@ -36,13 +36,13 @@ const CatSectionFilterForm = ({
   const [brands, setBrands] = useState<IBrandItem[]>([]);
 
   useEffect(() => {
-    makeApiRequest(API_METHODS.GET, getBrandsClient())
+    makeApiRequest(API_METHODS.GET, getAllBrands())
       .then((response) => response?.json())
       .then((data) => setBrands(data));
   }, []);
 
   const handleReset = () => {
-    makeApiRequest(API_METHODS.GET, getCategoryItemsClient(categoryid))
+    makeApiRequest(API_METHODS.GET, getCategoryItems(categoryid))
       .then((response) => response?.json())
       .then((data) => setMerchItems(data));
   };

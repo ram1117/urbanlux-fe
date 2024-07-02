@@ -1,16 +1,17 @@
 "use client";
 
-import { IFormAddressItem, IAddressItems, ICartItem } from "@/interfaces";
+import { IFormAddressItem, ICartItem } from "@/interfaces";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { useState } from "react";
 import PriceSplit from "./PriceSplit";
 import Address from "./Address";
 import { Button } from "../ui/button";
 import PlaceOrderAction from "@/actions/ordering/placeorder.action";
+import LoadingSpinner from "../ui/loadingspinner";
+import { useRouter } from "next/navigation";
 
 interface CheckoutSectionProps {
   cartitems: ICartItem[];
-  addressData: IAddressItems;
 }
 
 interface IErrorState {
@@ -22,8 +23,10 @@ interface IErrorState {
   error?: string;
 }
 
-const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
+const CheckoutSection = ({ cartitems }: CheckoutSectionProps) => {
+  const router = useRouter();
   const [errors, setErrors] = useState<IErrorState | undefined>();
+  const [disableButton, setDisableButton] = useState(true);
   const [address, setAddress] = useState<IFormAddressItem>({
     delivery: "",
     billing: "",
@@ -38,14 +41,16 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
         ...prev,
         address: { ...prev?.address, delivery: "select delivery address" },
       }));
+      return;
     }
     if (address.billing.length === 0) {
       setErrors((prev) => ({
         ...prev,
         address: { ...prev?.address, billing: "select billing address" },
       }));
+      return;
     }
-
+    setDisableButton(true);
     const response = await PlaceOrderAction(
       cartitems,
       address.delivery,
@@ -54,6 +59,9 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
 
     if (response?.error) {
       setErrors((prev) => ({ ...prev, error: response.message }));
+    }
+    if (response.success) {
+      router.push(`/payments/${response.data._id}`);
     }
   };
 
@@ -75,19 +83,24 @@ const CheckoutSection = ({ addressData, cartitems }: CheckoutSectionProps) => {
           <Address
             setAddress={setAddress}
             selectedAddress={address}
-            addressList={addressData}
+            disableButton={setDisableButton}
             errors={errors?.address}
           ></Address>
         </CardContent>
       </Card>
       <div className="p-4 flex justify-center">
-        <Button onClick={handleClick} className="px-6 tracking-widest">
-          Place Order
+        <Button
+          onClick={handleClick}
+          className="px-6 tracking-widest"
+          disabled={disableButton}
+        >
+          {disableButton ? <LoadingSpinner></LoadingSpinner> : "Place Order"}
         </Button>
       </div>
       {errors?.cartitems && (
         <p className="text-sm text-red-800">{errors.cartitems}</p>
       )}
+      {errors?.error && <p className="text-sm text-red-800">{errors.error}</p>}
     </section>
   );
 };

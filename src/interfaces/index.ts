@@ -103,6 +103,12 @@ export interface ICartItem {
   size: string;
 }
 
+export interface ISavedItem {
+  id: string;
+  name: string;
+  thumbnail: string;
+}
+
 export interface IPlaceOrderItem {
   inventory: string;
   quantity: number;
@@ -156,10 +162,10 @@ export interface IOrderItem {
   size: string;
   subtotal: number;
   user: string;
+  available: boolean;
   inventory: string;
   createdAt: string;
   updatedAt: string;
-  cancelled: boolean;
 }
 
 export interface IOrder {
@@ -169,7 +175,8 @@ export interface IOrder {
   address: IAddressItem;
   payment_status: string;
   order_status: string;
-  user: string;
+  tracking_id: string;
+  comments: string[];
   createdAt: string;
   updatedAt: string;
   cancelled: boolean;

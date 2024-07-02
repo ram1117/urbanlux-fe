@@ -1,6 +1,6 @@
 import ItemSection from "@/components/itempage/ItemSection";
-import { ICartItem } from "@/interfaces";
-import { CART_KEY } from "@/lib/constants";
+import { ICartItem, ISavedItem } from "@/interfaces";
+import { CART_KEY, SAVED_KEY } from "@/lib/constants";
 import { cookies } from "next/headers";
 
 const Page = ({ params }: { params: { itemid: string } }) => {
@@ -14,9 +14,21 @@ const Page = ({ params }: { params: { itemid: string } }) => {
     );
   }
 
+  let savedItem: ISavedItem | undefined;
+  const savedCookies = cookies().get(SAVED_KEY);
+  if (savedCookies) {
+    savedItem = JSON.parse(savedCookies.value).find(
+      (item: ISavedItem) => item.id === itemid,
+    );
+  }
+
   return (
     <main className="min-h-screen bg-light text-dark">
-      <ItemSection itemid={itemid} existingItem={existingItem}></ItemSection>
+      <ItemSection
+        itemid={itemid}
+        existingItem={existingItem}
+        savedItem={savedItem}
+      ></ItemSection>
     </main>
   );
 };
