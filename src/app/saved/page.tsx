@@ -16,6 +16,9 @@ const Page = () => {
         <h1 className="text-xl md:text-3xl font-cantarell text-left md:text-center">
           Saved Items
         </h1>
+        {savedItems.length === 0 && (
+          <p className="text-center my-4 italic">No saved items</p>
+        )}
         <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 my-4">
           {savedItems.map((item) => (
             <li key={item.id} className="border rounded-md p-4">

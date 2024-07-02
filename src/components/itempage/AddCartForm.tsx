@@ -18,19 +18,14 @@ import { useState } from "react";
 
 interface AddCartFormProps {
   item: IMerchandiseItem;
-  setPrice: React.Dispatch<React.SetStateAction<number>>;
-  price: number;
+
   existingItem: ICartItem | undefined;
 }
 
 const initialState: IAddCartFormState = { errors: {} };
 
-const AddCartForm = ({
-  item,
-  setPrice,
-  price,
-  existingItem,
-}: AddCartFormProps) => {
+const AddCartForm = ({ item, existingItem }: AddCartFormProps) => {
+  const [price, setPrice] = useState(existingItem ? existingItem.price : 0);
   const [size, setSize] = useState(existingItem?.size || "");
 
   const quantityoptions = Array(10)
@@ -103,11 +98,18 @@ const AddCartForm = ({
           {formState.errors.quantity?.join(",")}
         </p>
       </div>
+      <div className="flex items-center gap-8">
+        <FormSubmit
+          text={`${existingItem ? "Update cart" : "Add to cart"}`}
+          className="w-max"
+        ></FormSubmit>
+        {price !== 0 && (
+          <p className="my-4">
+            Price: <span className="text-lg font-medium">$ {price}</span>
+          </p>
+        )}
+      </div>
 
-      <FormSubmit
-        text={`${existingItem ? "Update cart" : "Add to cart"}`}
-        className="w-max"
-      ></FormSubmit>
       <p className="text-xs text-red-800">
         {formState.errors._form?.join(",")}
       </p>
