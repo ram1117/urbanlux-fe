@@ -8,7 +8,7 @@ Tech stack - Typescript, TailwindCSS
 
 ### Live Demo
 
-[Live Demo on Vercel](TBA)
+https://github.com/ram1117/urbanlux-fe/assets/116718155/9db3149b-eb3b-4147-a9ec-4ebcd6fe9203
 
 ## Getting Started
 
