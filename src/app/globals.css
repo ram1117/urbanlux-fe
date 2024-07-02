@@ -2,32 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.radio-color:not(:checked):not(:disabled) {
+  appearance: none;
+  background-color: transparent;
+  height: 1rem;
+  width: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.radio-color:checked {
+  height: 1.3rem;
+  width: 1.3rem;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.size-label {
+  display: inline-block;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.size-input {
+  display: none;
+}
+
+.size-input:checked + .size-label {
+  border: solid 2px #0d1326;
 }
