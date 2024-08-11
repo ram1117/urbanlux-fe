@@ -4,8 +4,9 @@ import { montserrat, cantarell } from "@/atoms/fonts";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { getAuthenticatedAppForUser } from "@/lib/firebase/firebase.server";
+import ChatWindow from "@/components/chat/ChatWindow";
 export const metadata: Metadata = {
-  title: "UrbanLux",
+  title: "UrbanTrend",
   description: "Go to website for buying Urban and street fashion",
 };
 
@@ -23,6 +24,7 @@ export default async function RootLayout({
           <Navbar initialUser={currentUser?.toJSON()} />
         </header>
         {children}
+        <ChatWindow></ChatWindow>
         <Footer />
       </body>
     </html>

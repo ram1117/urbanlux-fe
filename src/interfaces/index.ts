@@ -206,3 +206,8 @@ export interface IUserInfo {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IChatFormState {
+  data: string | null;
+  errors: string | null;
+}

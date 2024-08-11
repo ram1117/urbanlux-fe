@@ -8,6 +8,8 @@ interface FormInputProps {
   readonly?: boolean;
   disabled?: boolean;
   errorMsg?: string;
+  maxLength?: number;
+  onKeyDown?: () => void;
 }
 
 const FormInput = ({
@@ -17,6 +19,8 @@ const FormInput = ({
   readonly = false,
   disabled = false,
   errorMsg = "",
+  maxLength = 200,
+  onKeyDown = undefined,
 }: FormInputProps) => {
   return (
     <div className="w-full">
@@ -28,6 +32,8 @@ const FormInput = ({
         type={type}
         disabled={disabled}
         readOnly={readonly}
+        maxLength={maxLength}
+        onKeyDown={onKeyDown}
       ></Input>
       <p className="text-red-800 text-xs">{errorMsg}</p>
     </div>

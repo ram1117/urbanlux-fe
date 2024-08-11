@@ -1,6 +1,7 @@
 const MERCHANDISE_BASE_URL = process.env.NEXT_PUBLIC_API_MERCHANDISE;
 const AUTH_BASE_URL = process.env.NEXT_PUBLIC_API_AUTH;
 const ORDERING_BASE_URL = process.env.NEXT_PUBLIC_API_ORDERING;
+const CHAT_BASE_URL = process.env.NEXT_PUBLIC_API_CHAT;
 
 /* URLs related to Merchandise */
 
@@ -39,3 +40,5 @@ export const getOrders = () => `${ORDERING_BASE_URL}/order`;
 export const getOrderById = (id: string) => `${ORDERING_BASE_URL}/order/${id}`;
 export const cancelOrder = (id: string) =>
   `${ORDERING_BASE_URL}/order/cancel/${id}`;
+
+export const postPrompt = () => `${CHAT_BASE_URL}`;
